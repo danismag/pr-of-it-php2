@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/autoload.php';
+require __DIR__ . '/../App/autoload.php';
 
-$data = \App\Models\Author::findAll();
-var_dump($data);
+// Тестирование метода execute класса Db
+include_once __DIR__ . '/../tests/DbTest.php';

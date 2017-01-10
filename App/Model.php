@@ -21,4 +21,6 @@ abstract class Model
         return (int)$db->query($sql, [], static::class)[0]->num;
     }
 
+
+
 }
