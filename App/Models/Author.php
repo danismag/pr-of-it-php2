@@ -10,7 +10,7 @@ class Author
 
     public static $table = 'authors';
 
-    public $firstname;
-    public $lastname;
+    public $firstName;
+    public $lastName;
 
 }

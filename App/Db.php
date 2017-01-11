@@ -14,7 +14,6 @@ class Db
         $password = '';
         $this->dbh = new \PDO($dsn, $user, $password);
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-//        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     public function query($sql, $data = [], $class = null)
@@ -36,16 +35,5 @@ class Db
         return $this->dbh->prepare($sql)->execute($params);
 
     }
-
-    /*public function test()
-    {
-        return $this->dbh->prepare(
-            'INSERT INTO news (title, text) VALUES (:head, :str)'
-        )
-            ->execute([
-                ':head' => 'Кофе не растет',
-                ':str' => 'В станицах Краснодарского края больше не смогут выращивать кофейные деревья. Все существующие сорта выродились'
-            ]);
-    }*/
 
 }

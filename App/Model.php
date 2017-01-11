@@ -29,6 +29,16 @@ abstract class Model
         return $res[0] ?? false;
     }
 
-
-
+    /**
+     * Возвращает указанное число последних значений
+     * @param $num
+     */
+    public static function findLast($num)
+    {
+        $db = new Db();
+        $sql = 'SELECT * FROM '. static::$table . ' WHERE id > '.
+            (static::countAll() > $num ? (static::countAll() - $num) : 0) .
+            ' ORDER BY id DESC';
+        return $db->query($sql, [], static::class);
+    }
 }
