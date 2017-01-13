@@ -22,12 +22,4 @@ class Config
         $this->data = include self::PATH;
     }
 
-    /*protected function save()
-    {
-        $file = fopen(self::PATH, "w+");
-        // TODO
-        fwrite($file, $str);
-        fclose($file);
-    }*/
-
 }

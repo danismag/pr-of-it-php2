@@ -10,3 +10,6 @@ require __DIR__ . '/../App/autoload.php';
 
 // Тестирование метода getLast класса Article
 //include_once __DIR__ . '/../tests/GetLastTest.php';
+
+//Тестирование метода insert класса Model
+//include_once __DIR__ . '/../tests/InsertModelTest.php';

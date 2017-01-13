@@ -43,7 +43,23 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
-    public function update()
+    public function save()
+    {
+        if (null === $this->id){
+            return $this->insert();
+        }
+        return $this->update();
+    }
+
+    public function delete()
+    {
+        $db = new Db();
+        $sql = 'DELETE FROM ' . static::$table . '
+        WHERE id=:id';
+        return $db->execute($sql, [':id' => $this->id]);
+    }
+
+    protected function update(): bool
     {
         $sets = [];
         $data = [];
@@ -60,4 +76,39 @@ abstract class Model
         WHERE id=:id';
         return $db->execute($sql, $data);
     }
+
+    protected function insert(): bool
+    {
+        $sets = [];
+        $data = [];
+        $keys = [];
+        foreach ($this as $key => $value) {
+            if ('id' == $key) {
+                continue;
+            }
+            if (null == $value) {
+                $data[':' . $key] = 'NULL';
+            }
+            $data[':' . $key] = $value;
+            $sets[] = $key . '=:' . $key;
+            $keys[] = ':' . $key;
+            $fields[] = $key;
+        }
+        $db = new Db();
+        $sql = 'INSERT INTO ' . static::$table .
+            ' (' .
+            implode(', ', $fields) .
+            ')' .
+            'VALUES (' .
+            implode(', ', $keys) .
+            ')';
+        if ($db->execute($sql, $data)){
+            $sql = 'SELECT id FROM '. static::$table . ' 
+            WHERE ' . implode(' AND ', $sets);
+            $this->id = $db->query($sql, $data)[0]['id'];
+            return true;
+        }
+        return false;
+    }
+    
 }

@@ -9,10 +9,15 @@ class Db
 
     public function __construct()
     {
-        $dsn = 'mysql:host=localhost;dbname=php2';
-        $user = 'danis';
-        $password = '';
-        $this->dbh = new \PDO($dsn, $user, $password);
+        $config = Config::instance();
+        $dsn = 'mysql:host=' .
+            $config->data['db']['host'] .
+            ';dbname=' .
+            $config->data['db']['dbname'];
+        $this->dbh = new \PDO($dsn,
+            $config->data['db']['user'],
+            $config->data['db']['password']
+        );
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
     }
 
