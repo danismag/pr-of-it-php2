@@ -42,4 +42,22 @@ abstract class Model
             ' ORDER BY id DESC';
         return $db->query($sql, [], static::class);
     }
+
+    public function update()
+    {
+        $sets = [];
+        $data = [];
+        foreach ($this as $key => $value) {
+            $data[':' . $key] = $value;
+            if ('id' == $key) {
+                continue;
+            }
+            $sets[] = $key . '=:' . $key;
+        }
+        $db = new Db();
+        $sql = 'UPDATE ' . static::$table . ' 
+        SET ' . implode(',', $sets) . ' 
+        WHERE id=:id';
+        return $db->execute($sql, $data);
+    }
 }

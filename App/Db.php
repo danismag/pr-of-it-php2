@@ -16,6 +16,12 @@ class Db
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @param $sql
+     * @param array $data
+     * @param null $class
+     * @return mixed
+     */
     public function query($sql, $data = [], $class = null)
     {
         $sth = $this->dbh->prepare($sql);
@@ -30,7 +36,12 @@ class Db
         }
     }
 
-    public function execute($sql, $params=[])
+    /**
+     * @param $sql
+     * @param array $params
+     * @return bool
+     */
+    public function execute($sql, $params = []): bool
     {
         return $this->dbh->prepare($sql)->execute($params);
 
