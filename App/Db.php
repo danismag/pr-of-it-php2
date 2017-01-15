@@ -49,7 +49,11 @@ class Db
     public function execute($sql, $params = []): bool
     {
         return $this->dbh->prepare($sql)->execute($params);
+    }
 
+    public function lastId(): int
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }

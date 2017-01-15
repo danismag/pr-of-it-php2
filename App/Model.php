@@ -103,9 +103,8 @@ abstract class Model
             implode(', ', $keys) .
             ')';
         if ($db->execute($sql, $data)){
-            $sql = 'SELECT id FROM '. static::$table . ' 
-            WHERE ' . implode(' AND ', $sets);
-            $this->id = $db->query($sql, $data)[0]['id'];
+
+            $this->id = $db->lastId();
             return true;
         }
         return false;
