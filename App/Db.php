@@ -42,7 +42,7 @@ class Db
     }
 
     /**
-     * @param $sql
+     * @param string $sql
      * @param array $params
      * @return bool
      */

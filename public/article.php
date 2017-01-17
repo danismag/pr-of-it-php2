@@ -12,6 +12,6 @@ if (!$article) {
     die;
 }
 
-include __DIR__ . "/../App/templates/articlePage.php";
+include __DIR__ . "/../App/Templates/articlePage.php";
 
 

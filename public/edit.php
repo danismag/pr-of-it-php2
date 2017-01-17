@@ -33,7 +33,7 @@ if (isset($_GET['action'])) {
                 }
             }
 
-            include __DIR__ . "/../App/templates/newPage.php";
+            include __DIR__ . "/../App/Templates/newPage.php";
             return;
 
             break;
@@ -50,7 +50,7 @@ if (isset($_GET['action'])) {
                     break;
                 }
 
-                include __DIR__ . "/../App/templates/editPage.php";
+                include __DIR__ . "/../App/Templates/editPage.php";
                 return;
 
             } elseif (isset($_POST['id']) &&
@@ -98,4 +98,4 @@ if (isset($_GET['action'])) {
 }
 
 $news = Article::findAll();
-include __DIR__ . "/../App/templates/editAllPage.php";
+include __DIR__ . "/../App/Templates/editAllPage.php";

@@ -79,7 +79,7 @@ abstract class Model
 
     protected function insert(): bool
     {
-        $sets = [];
+        $fields = [];
         $data = [];
         $keys = [];
         foreach ($this as $key => $value) {
@@ -90,7 +90,6 @@ abstract class Model
                 $data[':' . $key] = 'NULL';
             }
             $data[':' . $key] = $value;
-            $sets[] = $key . '=:' . $key;
             $keys[] = ':' . $key;
             $fields[] = $key;
         }
