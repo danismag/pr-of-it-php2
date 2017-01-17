@@ -2,5 +2,8 @@
 
 require __DIR__ . '/../App/autoload.php';
 
-$lastNews = \App\Models\Article::getLast(3);
-include __DIR__ . "/../App/Templates/mainPage.php";
+use App\View, App\Models\Article;
+
+$view = new View;
+$view->lastNews = Article::getLast(3);
+$view->display(__DIR__ . '/../App/Templates/mainPage.php');

@@ -3,7 +3,9 @@
 require __DIR__ . '/../App/autoload.php';
 
 
-use App\Models\Article;
+use App\Models\Article, App\View;
+
+$view = new View;
 
 if (isset($_GET['action'])) {
 
@@ -33,7 +35,9 @@ if (isset($_GET['action'])) {
                 }
             }
 
-            include __DIR__ . "/../App/Templates/newPage.php";
+            $view->title = $title;
+            $view->text = $text;
+            $view->display(__DIR__ . '/../App/Templates/newPage.php');
             return;
 
             break;
@@ -49,8 +53,8 @@ if (isset($_GET['action'])) {
                     echo 'Запрашиваемой страницы не существует';
                     break;
                 }
-
-                include __DIR__ . "/../App/Templates/editPage.php";
+                $view->article = $article;
+                $view->display(__DIR__ . '/../App/Templates/editPage.php');
                 return;
 
             } elseif (isset($_POST['id']) &&
@@ -97,5 +101,5 @@ if (isset($_GET['action'])) {
     }
 }
 
-$news = Article::findAll();
-include __DIR__ . "/../App/Templates/editAllPage.php";
+$view->news = Article::findAll();
+$view->display(__DIR__ . '/../App/Templates/editAllPage.php');

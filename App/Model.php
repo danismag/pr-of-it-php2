@@ -43,7 +43,11 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
-    public function save()
+    /**
+     * Сохраняет или перезаписывает объект
+     * @return bool
+     */
+    public function save(): bool
     {
         if (null === $this->id){
             return $this->insert();
@@ -51,7 +55,11 @@ abstract class Model
         return $this->update();
     }
 
-    public function delete()
+    /**
+     * Удаление объекта
+     * @return bool
+     */
+    public function delete(): bool
     {
         $db = new Db();
         $sql = 'DELETE FROM ' . static::$table . '
@@ -59,6 +67,10 @@ abstract class Model
         return $db->execute($sql, [':id' => $this->id]);
     }
 
+    /**
+     * Обновление объекта
+     * @return bool
+     */
     protected function update(): bool
     {
         $sets = [];
@@ -77,6 +89,10 @@ abstract class Model
         return $db->execute($sql, $data);
     }
 
+    /**
+     * Вставка нового объекта
+     * @return bool
+     */
     protected function insert(): bool
     {
         $fields = [];

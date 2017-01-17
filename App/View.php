@@ -4,8 +4,18 @@
 namespace App;
 
 
+use App\Models\Article;
 use App\Traits\TMagicProperties;
 
+/**
+ * Class View
+ * @package App
+ * @property Article article
+ * @property string title
+ * @property string text
+ * @property array news
+ * @property array lastNews
+ */
 class View
     implements \Countable
 {

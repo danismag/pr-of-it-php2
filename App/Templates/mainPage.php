@@ -5,7 +5,7 @@
 </head>
 <body>
 <nav>
-    <a href="/article.php?action=new">Добавить новость</a> |
+    <a href="/edit.php?action=new">Добавить новость</a> |
     <a href="/edit.php">Редактировать новости</a>
 </nav>
 <TABLE>
