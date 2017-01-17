@@ -3,7 +3,7 @@
 require __DIR__ . '/../App/autoload.php';
 
 
-use App\Models\Article, App\View;
+use App\Models\Article, App\Models\Author, App\View;
 
 $view = new View;
 
@@ -15,16 +15,30 @@ if (isset($_GET['action'])) {
 
             $title = '';
             $text = '';
+            $firstName = '';
+            $lastName = '';
 
             if (isset($_POST['title']) && isset($_POST['text'])) {
 
                 $title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
                 $text = filter_var($_POST['text'], FILTER_SANITIZE_STRING);
+                $firstName = filter_var($_POST['firstName'], FILTER_SANITIZE_STRING);
+                $lastName = filter_var($_POST['lastName'], FILTER_SANITIZE_STRING);
 
                 if ($title && $text) {
+
                     $article = new Article;
                     $article->title = $title;
                     $article->text = $text;
+                    if ($firstName && $lastName) {
+
+                        $author = new Author;
+                        $author->firstName = $firstName;
+                        $author->lastName = $lastName;
+                        $author->save();
+                        $article->author_id = $author->id;
+                    }
+
                     $article->save();
                     echo 'Новость сохранена!';
                     break;
@@ -37,6 +51,8 @@ if (isset($_GET['action'])) {
 
             $view->title = $title;
             $view->text = $text;
+            $view->firstName = $firstName;
+            $view->lastName = $lastName;
             $view->display(__DIR__ . '/../App/Templates/newPage.php');
             return;
 

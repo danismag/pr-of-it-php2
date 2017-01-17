@@ -13,6 +13,8 @@ use App\Traits\TMagicProperties;
  * @property Article article
  * @property string title
  * @property string text
+ * @property string firstName
+ * @property string lastName
  * @property array news
  * @property array lastNews
  */

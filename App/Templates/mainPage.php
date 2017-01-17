@@ -13,6 +13,7 @@
     <TR>
         <TH>Заголовок</TH>
         <TH>Новость</TH>
+        <TH>Имя и фамилия автора</TH>
     </TR>
 
     <?php foreach ($lastNews as $article): ?>
@@ -21,6 +22,10 @@
             <TD><a href="/article.php?id=<?= $article->id; ?>"><?= $article->title; ?></a>
             </TD>
             <TD><?= $article->text; ?></TD>
+            <TD>
+                <?= $article->author->firstName; ?>
+                <?= $article->author->lastName; ?>
+            </TD>
         </TR>
 
     <?php endforeach; ?>

@@ -20,6 +20,10 @@
         <TR>
             <TD><?= $article->title; ?></TD>
             <TD><?= $article->text; ?></TD>
+            <TD>
+                <?= $article->author->firstName; ?>
+                <?= $article->author->lastName; ?>
+            </TD>
             <TD><a href="/edit.php?action=edit&id=<?= $article->id; ?>">Редактировать</a></TD>
             <TD>&nbsp;</TD>
             <TD><a href="/edit.php?action=delete&id=<?= $article->id; ?>">Удалить</a></TD>
