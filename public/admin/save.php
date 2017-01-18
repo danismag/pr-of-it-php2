@@ -2,12 +2,29 @@
 
 require __DIR__ . '/../../App/autoload.php';
 
-if (isset($_POST['article']['id']))
-$article = new \App\Models\Article;
-$article->id = filter_var($_POST['article']['id'], FILTER_SANITIZE_NUMBER_INT);
-$article->title = filter_var($_POST['article']['title'], FILTER_SANITIZE_STRING);
-$article->text = filter_var($_POST['article']['text'], FILTER_SANITIZE_STRING);
+use App\Models\Article;
 
+if ($_POST['article']['id']) {
+
+    $article = Article::findById($_POST['article']['id']);
+
+} else {
+
+    $article = new Article;
+}
+
+$article->title = $_POST['article']['title'];
+$article->text = $_POST['article']['text'];
+
+if ($_POST['article']['author']['firstName'] || $_POST['article']['author']['lastName']) {
+
+    $author = new \App\Models\Author;
+    $author->firstName = $_POST['article']['author']['firstName'];
+    $author->lastName = $_POST['article']['author']['lastName'];
+    $author->save();
+    $article->author_id = $author->id;
+}
+$article->save();
 
 header('Location: /admin');
 exit;

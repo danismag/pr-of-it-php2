@@ -11,10 +11,6 @@ use App\Traits\TMagicProperties;
  * Class View
  * @package App
  * @property Article article
- * @property string title
- * @property string text
- * @property string firstName
- * @property string lastName
  * @property array news
  * @property array lastNews
  */
@@ -23,10 +19,8 @@ class View
 {
     use TMagicProperties;
 
-
     /**
-     * Count elements of an object
-     * @return int The custom count as an integer
+     * Реализация интерфейса Countable
      */
     public function count()
     {
