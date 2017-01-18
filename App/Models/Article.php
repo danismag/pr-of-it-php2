@@ -29,19 +29,15 @@ class Article
         return self::findLast($num);
     }
 
-    public function __get($key)
+    public function __get($key): Author
     {
         if ('author' === $key) {
             if (null !== $this->author_id) {
 
                 return Author::findById($this->author_id);
             }
-            return [
-                'firstName' => 'Автор',
-                'lastName' => 'неизвестен',
-            ];
+            return new Author;
         }
     }
-
 
 }

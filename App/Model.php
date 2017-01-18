@@ -44,12 +44,24 @@ abstract class Model
     }
 
     /**
+     * Проверяет, является ли объект новым (занесенным в БД)
+     * @return bool
+     */
+    public function isNew():bool
+    {
+        if (null === $this->id){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Сохраняет или перезаписывает объект
      * @return bool
      */
     public function save(): bool
     {
-        if (null === $this->id){
+        if ($this->isNew()){
             return $this->insert();
         }
         return $this->update();
@@ -102,9 +114,9 @@ abstract class Model
             if ('id' == $key) {
                 continue;
             }
-            if (null == $value) {
+            /*if (null == $value) {
                 $data[':' . $key] = 'NULL';
-            }
+            }*/
             $data[':' . $key] = $value;
             $keys[] = ':' . $key;
             $fields[] = $key;

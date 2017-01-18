@@ -1,22 +1,38 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Редактирование новости</title>
+    <title>Страница редактирования новостей</title>
 </head>
 <body>
 <nav>
-    <a href="/">На главную</a>
+    <a href="/">На главную</a> |
+    <a href="/admin/new.php">Добавить новость</a>
 </nav>
-<form method="POST" action="edit.php?action=edit">
-    <input type="number" name="id" value="<?= $article->id; ?>" hidden="true">
-    <label for="inputTitle">Заголовок новости</label>
-    <input type="text" name="title" id="inputTitle" size="40%" placeholder="Введите заголовок новости" value="<?= $article->title; ?>">
-    <br><br>
-    <label for="inputText">Текст новости</label>
-    <textarea type="text" name="text" id="inputText" cols="67" rows="5" placeholder="Введите текст новости"><?= $article->text; ?></textarea>
-    <br><br>
-    <button type="submit">Отправить</button>
-</form>
+<TABLE>
+    <CAPTION><H2>Новости</H2></CAPTION>
+    <TR>
+        <TH>Заголовок</TH>
+        <TH>Новость</TH>
+        <TH>Имя и фамилия автора</TH>
+    </TR>
+
+    <?php foreach ($news as $article): ?>
+
+        <TR>
+            <TD><?= $article->title; ?></TD>
+            <TD><?= $article->text; ?></TD>
+            <TD>
+                <?= $article->author->firstName; ?>
+                <?= $article->author->lastName; ?>
+            </TD>
+            <TD><a href="/admin/edit.php?id=<?= $article->id; ?>">Редактировать</a></TD>
+            <TD>&nbsp;</TD>
+            <TD><a href="/admin/delete.php?id=<?= $article->id; ?>">Удалить</a></TD>
+        </TR>
+
+    <?php endforeach; ?>
+
+</TABLE>
+
 </body>
 </html>
-

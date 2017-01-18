@@ -53,7 +53,7 @@ if (isset($_GET['action'])) {
             $view->text = $text;
             $view->firstName = $firstName;
             $view->lastName = $lastName;
-            $view->display(__DIR__ . '/../App/Templates/newPage.php');
+            $view->display(__DIR__ . '/../App/Templates/newArticle.php');
             return;
 
             break;
@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
                     break;
                 }
                 $view->article = $article;
-                $view->display(__DIR__ . '/../App/Templates/editPage.php');
+                $view->display(__DIR__ . '/../App/Templates/editArticle.php');
                 return;
 
             } elseif (isset($_POST['id']) &&
@@ -118,4 +118,4 @@ if (isset($_GET['action'])) {
 }
 
 $view->news = Article::findAll();
-$view->display(__DIR__ . '/../App/Templates/editAllPage.php');
+$view->display(__DIR__ . '/../App/Templates/editPage.php');
