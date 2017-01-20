@@ -40,4 +40,25 @@ class Article
         }
     }
 
+    /**
+     * Заполняет поле author_id
+     * @param array $data
+     */
+    public function fromArray($data = [])
+    {
+        parent::fromArray($data);
+
+        if ($data['author']) {
+
+            if ($this->author_id) {
+                $author = Author::findById($this->author_id);
+            } else {
+                $author = new Author;
+            }
+
+            $author->fromArray($data['author']);
+            $author->save();
+            $this->author_id = $author->id;
+        }
+    }
 }
