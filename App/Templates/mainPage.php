@@ -5,8 +5,8 @@
 </head>
 <body>
 <nav>
-    <a href="/admin/new.php">Добавить новость</a> |
-    <a href="/admin/index.php">Редактировать новости</a>
+    <a href="/admin/new">Добавить новость</a> |
+    <a href="/admin">Редактировать новости</a>
 </nav>
 <TABLE>
     <CAPTION><H2>Последние новости</H2></CAPTION>
@@ -19,7 +19,7 @@
     <?php foreach ($lastNews as $article): ?>
 
         <TR>
-            <TD><a href="/article.php?id=<?= $article->id; ?>"><?= $article->title; ?></a>
+            <TD><a href="/index/one/<?= $article->id; ?>"><?= $article->title; ?></a>
             </TD>
             <TD><?= $article->text; ?></TD>
             <TD>

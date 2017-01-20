@@ -18,11 +18,16 @@ abstract class Controller
         return true;
     }
 
-    public function action($actionName)
+    public function action($actionName, $params = null)
     {
         if ($this->access()) {
             $action = 'action' . $actionName;
-            $this->$action;
+            if ($params) {
+                $this->$action($params);
+            } else {
+                $this->$action();
+            }
+
         } else {
             die('Нет доступа');
         }

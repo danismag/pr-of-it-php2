@@ -6,14 +6,14 @@
 <body>
     <nav>
         <a href="/">На главную</a> |
-        <a href="/admin/new.php">Добавить новость</a> |
-        <a href="/admin/index.php">Редактировать новости</a>
+        <a href="/admin/new">Добавить новость</a> |
+        <a href="/admin">Редактировать новости</a>
     </nav>
     <br><br>
-    <form method="POST" action="/admin/save.php">
+    <form method="POST" action="/admin/save<?= $article->id; ?>">
 
         <?php if (!$article->isNew()): ?>
-        <input type="number" name="article[id]" value="<?= $article->id; ?>" hidden="true">
+        <input type="number" name="article[id]" value="" hidden="true">
         <?php endif;?>
 
         <label for="inputTitle">Заголовок новости</label>
