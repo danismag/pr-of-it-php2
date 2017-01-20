@@ -40,7 +40,10 @@ class Admin extends Controller
         }
 
         $article->fromArray($_POST['article']);
-        var_dump($article);
+        $article->save();
+
+        header('Location: /admin/default');
+        exit;
     }
 
     public function actionDelete($id)

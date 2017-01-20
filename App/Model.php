@@ -145,7 +145,9 @@ abstract class Model
     {
         if ($data) {
             foreach ($data as $key => $value) {
-                if (property_exists(static::class, $key) && 'id' !== $key) {
+                if ($value &&
+                    property_exists(static::class, $key) &&
+                    'id' !== $key) {
 
                     $this->$key = $value;
                 }
