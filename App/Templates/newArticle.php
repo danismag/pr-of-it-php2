@@ -7,14 +7,10 @@
     <nav>
         <a href="/">На главную</a> |
         <a href="/admin/new">Добавить новость</a> |
-        <a href="/admin">Редактировать новости</a>
+        <a href="/admin/default">Редактировать новости</a>
     </nav>
     <br><br>
-    <form method="POST" action="/admin/save<?= $article->id; ?>">
-
-        <?php if (!$article->isNew()): ?>
-        <input type="number" name="article[id]" value="" hidden="true">
-        <?php endif;?>
+    <form method="POST" action="/admin/save/<?= $article->id; ?>">
 
         <label for="inputTitle">Заголовок новости</label>
         <input type="text" name="article[title]" id="inputTitle" size="40%" placeholder="Введите заголовок новости" value="<?= $article->title; ?>">

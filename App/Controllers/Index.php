@@ -14,7 +14,7 @@ class Index extends Controller
         $this->view->display(__DIR__ . '/../Templates/mainPage.php');
     }
 
-    public function actionOne($id)
+    public function actionOne($id = null)
     {
         $article = Article::findById($id);
         if (!$article) {

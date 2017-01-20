@@ -6,7 +6,7 @@
 <body>
 <nav>
     <a href="/admin/new">Добавить новость</a> |
-    <a href="/admin">Редактировать новости</a>
+    <a href="/admin/default">Редактировать новости</a>
 </nav>
 <TABLE>
     <CAPTION><H2>Последние новости</H2></CAPTION>

@@ -136,5 +136,20 @@ abstract class Model
         }
         return false;
     }
-    
+
+    /**
+     * Заполняет поля объекта данными из массива
+     * @param array $data
+     */
+    public function fromArray($data = [])
+    {
+        if ($data) {
+            foreach ($data as $key => $value) {
+                if (property_exists(static::class, $key) && 'id' !== $key) {
+
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
 }

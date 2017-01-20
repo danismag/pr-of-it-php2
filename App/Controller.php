@@ -22,6 +22,11 @@ abstract class Controller
     {
         if ($this->access()) {
             $action = 'action' . $actionName;
+
+            if (!method_exists($this, $action)) {
+                die("Метод $action в контроллере " . static::class . ' не найден');
+            }
+
             if ($params) {
                 $this->$action($params);
             } else {
@@ -31,7 +36,6 @@ abstract class Controller
         } else {
             die('Нет доступа');
         }
-
     }
 
 }

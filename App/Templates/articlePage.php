@@ -6,8 +6,8 @@
 <body>
 <nav>
     <a href="/">На главную</a> |
-    <a href="/admin/new.php">Добавить новость</a> |
-    <a href="/admin/index.php">Редактировать новости</a>
+    <a href="/admin/new">Добавить новость</a> |
+    <a href="/admin/default">Редактировать новости</a>
 </nav>
 <H1>Новость дня</H1>
 <H3><?= $article->title; ?></H3>

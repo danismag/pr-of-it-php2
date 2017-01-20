@@ -6,7 +6,7 @@
 <body>
 <nav>
     <a href="/">На главную</a> |
-    <a href="/admin/new.php">Добавить новость</a>
+    <a href="/admin/new">Добавить новость</a>
 </nav>
 <TABLE>
     <CAPTION><H2>Новости</H2></CAPTION>
@@ -25,9 +25,9 @@
                 <?= $article->author->firstName; ?>
                 <?= $article->author->lastName; ?>
             </TD>
-            <TD><a href="/admin/edit.php?id=<?= $article->id; ?>">Редактировать</a></TD>
+            <TD><a href="/admin/edit/<?= $article->id; ?>">Редактировать</a></TD>
             <TD>&nbsp;</TD>
-            <TD><a href="/admin/delete.php?id=<?= $article->id; ?>">Удалить</a></TD>
+            <TD><a href="/admin/delete/<?= $article->id; ?>">Удалить</a></TD>
         </TR>
 
     <?php endforeach; ?>
