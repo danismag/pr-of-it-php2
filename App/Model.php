@@ -31,8 +31,8 @@ abstract class Model
 
     /**
      * Возвращает указанное число последних значений
-     * @param $num
-     * @return object
+     * @param int $num
+     * @return array
      */
     public static function findLast($num)
     {

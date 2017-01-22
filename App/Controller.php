@@ -27,11 +27,7 @@ abstract class Controller
                 die("Метод $action в контроллере " . static::class . ' не найден');
             }
 
-            if ($params) {
-                $this->$action($params);
-            } else {
-                $this->$action();
-            }
+            $this->$action($params);
 
         } else {
             die('Нет доступа');

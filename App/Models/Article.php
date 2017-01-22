@@ -7,7 +7,7 @@ use App\Model;
 /**
  * Class Article
  * @package App\Models
- * @property Author author
+ * @property \App\Models\Author author
  */
 class Article
     extends Model
@@ -29,7 +29,7 @@ class Article
         return self::findLast($num);
     }
 
-    public function __get($key): Author
+    public function __get($key)
     {
         if ('author' === $key) {
             if (null !== $this->author_id) {
