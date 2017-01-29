@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\DbException;
+
 class Db
 {
 
@@ -14,11 +16,18 @@ class Db
             $config->data['db']['host'] .
             ';dbname=' .
             $config->data['db']['dbname'];
-        $this->dbh = new \PDO($dsn,
-            $config->data['db']['user'],
-            $config->data['db']['password']
-        );
+        try {
+            $this->dbh = new \PDO($dsn,
+                $config->data['db']['user'],
+                $config->data['db']['password']
+            );
+        } catch (\PDOException $e) {
+
+            throw new DbException('Сообщение с базой данных не установлено: ' . $e->getMessage());
+        }
+
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+//        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     /**
@@ -31,8 +40,8 @@ class Db
     {
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute($data);
-        if (false === $res) {
-            die('DB error in ' . $sql);
+        if (!$res) {
+            throw new DbException('Ошибка в запросе '. $sql);
         }
         if (null === $class) {
             return $sth->fetchAll();
@@ -53,7 +62,13 @@ class Db
 
     public function lastId(): int
     {
-        return $this->dbh->lastInsertId();
+        try {
+            return $this->dbh->lastInsertId();
+
+        } catch (\PDOException $e) {
+
+            throw new DbException($e->getMessage());
+        }
     }
 
 }

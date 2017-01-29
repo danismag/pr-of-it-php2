@@ -13,6 +13,12 @@ $controllerClass = '\\App\\Controllers\\' . $controllerName;
 if (!class_exists($controllerClass)) {
     die('Контроллер ' . $controllerClass . ' не найден');
 }
+try {
+    $controller = new $controllerClass;
+    $controller->action($actionName, $params);
 
-$controller = new $controllerClass;
-$controller->action($actionName, $params);
+} catch (\App\Exceptions\DbException $e) {
+
+    (new \App\Controllers\Index)->actionError($e->getMessage());
+}
+
