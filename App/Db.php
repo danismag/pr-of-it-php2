@@ -35,6 +35,7 @@ class Db
      * @param array $data
      * @param null $class
      * @return mixed
+     * @throws DbException
      */
     public function query($sql, $data = [], $class = null)
     {

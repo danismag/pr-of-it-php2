@@ -17,7 +17,7 @@ try {
     $controller = new $controllerClass;
     $controller->action($actionName, $params);
 
-} catch (\App\Exceptions\DbException $e) {
+} catch (\Exception $e) {
 
     (new \App\Controllers\Index)->actionError($e->getMessage());
 }

@@ -17,10 +17,6 @@ class Index extends Controller
     public function actionOne($id = null)
     {
         $article = Article::findById($id);
-        if (!$article) {
-            die('Запрошенной страницы не существует');
-        }
-
         $this->view->article = $article;
         $this->view->display(__DIR__ . '/../Templates/articlePage.php');
     }

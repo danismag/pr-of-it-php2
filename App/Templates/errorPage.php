@@ -6,9 +6,7 @@
 </head>
 <body>
 
-    <img src="http://placehold.it/30?text=Ошибка">
-
-    <p><?= $message; ?></p>
+    <p style="color: red"><?= $message; ?></p>
 
 </body>
 </html>

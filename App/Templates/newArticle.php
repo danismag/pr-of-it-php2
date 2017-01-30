@@ -10,6 +10,13 @@
         <a href="/admin/default">Редактировать новости</a>
     </nav>
     <br><br>
+    <?php if (isset($errors)): ?>
+        <?php foreach ($errors as $error): ?>
+            <p style="color: crimson"><?= $error->getMessage(); ?></p>
+        <?php endforeach; ?>
+    <?php endif; ?>
+    <br><br>
+
     <form method="POST" action="/admin/save/<?= $article->id; ?>">
 
         <label for="inputTitle">Заголовок новости</label>

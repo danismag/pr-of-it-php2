@@ -44,11 +44,11 @@ class Article
      * Заполняет поле author_id
      * @param array $data
      */
-    public function fromArray($data = [])
+    public function fill($data = [])
     {
-        parent::fromArray($data);
+        parent::fill($data);
 
-        if ($data['author']) {
+        if (!empty($data['author'])) {
 
             if ($this->author_id) {
                 $author = Author::findById($this->author_id);
@@ -56,7 +56,7 @@ class Article
                 $author = new Author;
             }
 
-            $author->fromArray($data['author']);
+            $author->fill($data['author']);
             $author->save();
             $this->author_id = $author->id;
         }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Exceptions\NotFoundException;
+
 abstract class Model
 {
 
@@ -26,7 +28,10 @@ abstract class Model
         $db = new Db();
         $sql = 'SELECT * FROM '. static::$table . ' WHERE id = :id';
         $res = $db->query($sql, [':id' => $id], static::class);
-        return $res[0] ?? false;
+        if (empty($res)) {
+            throw new NotFoundException("Запись c id = $id не найдена!");
+        }
+        return $res[0];
     }
 
     /**
@@ -77,6 +82,36 @@ abstract class Model
         $sql = 'DELETE FROM ' . static::$table . '
         WHERE id=:id';
         return $db->execute($sql, [':id' => $this->id]);
+    }
+
+    /**
+     * Заполняет поля объекта данными из массива
+     * @param array $data
+     * @throws MultiException
+     */
+    public function fill($data = [])
+    {
+        $errors = new MultiException;
+        if (!empty($data)) {
+            foreach ($this as $key => $value) {
+                if ('id' !== $key && key_exists($key, $data)) {
+                    if (empty($data[$key])) {
+
+                        $errors->add(new \Exception("Заполните поле $key"));
+                    }
+                }
+            }
+        }
+
+        if (!$errors->isEmpty()) {
+            throw $errors;
+        }
+
+        foreach ($this as $key => $value) {
+            if ('id' !== $key && key_exists($key, $data)) {
+                $this->$key = $data[$key];
+            }
+        }
     }
 
     /**
@@ -137,21 +172,4 @@ abstract class Model
         return false;
     }
 
-    /**
-     * Заполняет поля объекта данными из массива
-     * @param array $data
-     */
-    public function fromArray($data = [])
-    {
-        if ($data) {
-            foreach ($data as $key => $value) {
-                if ($value &&
-                    property_exists(static::class, $key) &&
-                    'id' !== $key) {
-
-                    $this->$key = $value;
-                }
-            }
-        }
-    }
 }

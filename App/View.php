@@ -13,6 +13,8 @@ use App\Traits\TMagicProperties;
  * @property Article article
  * @property array news
  * @property array lastNews
+ * @property string message
+ * @property array errors
  */
 class View
     implements \Countable, \Iterator
