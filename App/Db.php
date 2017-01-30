@@ -27,7 +27,7 @@ class Db
         }
 
         $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-//        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
     /**
@@ -39,11 +39,14 @@ class Db
      */
     public function query($sql, $data = [], $class = null)
     {
-        $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute($data);
-        if (!$res) {
-            throw new DbException('Ошибка в запросе '. $sql);
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($data);
+
+        }  catch (\PDOException $e) {
+            throw new DbException('Ошибка в запросе '. $sql . $e->getMessage());
         }
+
         if (null === $class) {
             return $sth->fetchAll();
         } else {
@@ -58,7 +61,12 @@ class Db
      */
     public function execute($sql, $params = []): bool
     {
-        return $this->dbh->prepare($sql)->execute($params);
+        try {
+            return $this->dbh->prepare($sql)->execute($params);
+
+        } catch (\PDOException $e) {
+            throw new DbException($e->getMessage());
+        }
     }
 
     public function lastId(): int

@@ -11,14 +11,16 @@ $params = $parts[3] ?? null;
 $controllerClass = '\\App\\Controllers\\' . $controllerName;
 
 if (!class_exists($controllerClass)) {
-    die('Контроллер ' . $controllerClass . ' не найден');
+    (new \App\Controllers\Index)->actionError('Контроллер ' . $controllerClass . ' не найден');
 }
+
 try {
     $controller = new $controllerClass;
     $controller->action($actionName, $params);
 
 } catch (\Exception $e) {
 
-    (new \App\Controllers\Index)->actionError($e->getMessage());
+    (new \App\Logger)->addRecord($e);
+    (new \App\Controllers\Index)->actionError();
 }
 

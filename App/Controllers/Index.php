@@ -21,7 +21,7 @@ class Index extends Controller
         $this->view->display(__DIR__ . '/../Templates/articlePage.php');
     }
 
-    public function actionError($message = '')
+    public function actionError($message = 'Страница не найдена')
     {
         $this->view->message = $message;
         $this->view->display(__DIR__ . '/../Templates/errorPage.php');
