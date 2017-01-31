@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\NotFoundException;
+use danismag\MultiException\MultiException;
 
 abstract class Model
 {

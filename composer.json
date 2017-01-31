@@ -1,6 +1,7 @@
 {
   "require": {
 
-    "psr/log": "*"
+    "psr/log": "*",
+    "danismag/multi-exception": "dev-master"
   }
 }

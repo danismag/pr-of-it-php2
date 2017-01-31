@@ -4,8 +4,45 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "260e327c158a3f56703271298bfecfc1",
+    "content-hash": "8dc0b2a85e1bab6beb42e01efd67cfd6",
     "packages": [
+        {
+            "name": "danismag/multi-exception",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danismag/multi-exception.git",
+                "reference": "4fc506adfc86224efb2d67b567126e2819a44c96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danismag/multi-exception/zipball/4fc506adfc86224efb2d67b567126e2819a44c96",
+                "reference": "4fc506adfc86224efb2d67b567126e2819a44c96",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "danismag\\MultiException\\": "danismag/MultiException/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "gnu-gpl3"
+            ],
+            "authors": [
+                {
+                    "name": "Danis Magadeev",
+                    "email": "danismag@bk.ru",
+                    "role": "Packer"
+                }
+            ],
+            "description": "MultiException class for more efficient validate data",
+            "time": "2017-01-31 18:35:46"
+        },
         {
             "name": "psr/log",
             "version": "1.0.2",
@@ -57,7 +94,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "danismag/multi-exception": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

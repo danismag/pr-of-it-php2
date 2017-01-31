@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 
 use App\Controller, App\Models\Article;
-use App\MultiException;
+use danismag\MultiException\MultiException;
 
 class Admin extends Controller
 {
