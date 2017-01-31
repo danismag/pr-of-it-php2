@@ -1,7 +1,9 @@
 <?php
 
-function __autoload($className)
-{
+
+
+spl_autoload_register(function ($className) {
+
     $filename = str_replace('\\', '/', $className) . '.php';
     $path =  __DIR__ . '/../' . $filename;
 
@@ -9,4 +11,4 @@ function __autoload($className)
 
         require $path;
     }
-}
+});
