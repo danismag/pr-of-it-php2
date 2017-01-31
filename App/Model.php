@@ -6,7 +6,6 @@ use App\Exceptions\NotFoundException;
 
 abstract class Model
 {
-
     public $id;
 
     public static function findAll()
@@ -89,28 +88,32 @@ abstract class Model
      * @param array $data
      * @throws MultiException
      */
-    public function fill($data = [])
+    public function fill(array $data)
     {
         $errors = new MultiException;
-        if (!empty($data)) {
-            foreach ($this as $key => $value) {
-                if ('id' !== $key && key_exists($key, $data)) {
-                    if (empty($data[$key])) {
 
-                        $errors->add(new \Exception("Заполните поле $key"));
-                    }
+        foreach ($data as $key => $value) {
+
+            $validator = 'validate' . ucfirst($key);
+
+            if (method_exists($this, $validator)) {
+
+                if (false === $this->$validator($value)) {
+
+                    $errors->add(new \Exception("Заполните поле $key"));
+                    continue;
                 }
             }
+            if (property_exists(static::class, 'mustNotBeFilled') &&
+                in_array($key, static::$mustNotBeFilled)) {
+                continue;
+            }
+
+            $this->$key = $data[$key];
         }
 
         if (!$errors->isEmpty()) {
             throw $errors;
-        }
-
-        foreach ($this as $key => $value) {
-            if ('id' !== $key && key_exists($key, $data)) {
-                $this->$key = $data[$key];
-            }
         }
     }
 
@@ -170,6 +173,14 @@ abstract class Model
             return true;
         }
         return false;
+    }
+
+    protected function validateString(string $str):bool
+    {
+        if (strlen(trim($str)) < 2) {
+            return false;
+        }
+        return true;
     }
 
 }

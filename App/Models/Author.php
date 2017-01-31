@@ -7,10 +7,20 @@ use App\Model;
 class Author
     extends Model
 {
-
-    public static $table = 'authors';
+    protected static $mustNotBeFilled = ['id'];
+    protected static $table = 'authors';
 
     public $firstName;
     public $lastName;
+
+    protected function validateFirstName($str):bool
+    {
+        return $this->validateString($str);
+    }
+
+    protected function validateLastName($str):bool
+    {
+        return $this->validateString($str);
+    }
 
 }

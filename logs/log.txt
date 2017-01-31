@@ -1,0 +1,10 @@
+2017-01-30 14:01:38 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 26 | Сообщение с базой данных не установлено: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Name or service not known
+2017-01-30 14:01:47 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 26 | Сообщение с базой данных не установлено: SQLSTATE[HY000] [1049] Unknown database 'php'
+2017-01-30 14:01:32 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 26 | Сообщение с базой данных не установлено: SQLSTATE[HY000] [1045] Access denied for user ''@'localhost' (using password: NO)
+2017-01-30 14:01:41 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 26 | Сообщение с базой данных не установлено: SQLSTATE[HY000] [1045] Access denied for user 'danis'@'localhost' (using password: YES)
+2017-01-30 14:01:50 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 45 | Ошибка в запросе SELEC * FROM news
+2017-01-30 14:01:58 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Model.php | Строка 32 | Запись c id = 108 не найдена!
+2017-01-30 14:01:19 | Код ошибки 42000 | /home/danis/web-программирование/kredit/App/Db.php | Строка 43 | SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELEC * FROM news WHERE id > 4 ORDER BY id DESC' at line 1
+2017-01-31 10:01:51 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 68 | SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author' in 'field list'
+2017-01-31 11:01:04 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 68 | SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author' in 'field list'
+2017-01-31 11:01:18 | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Db.php | Строка 68 | SQLSTATE[42S22]: Column not found: 1054 Unknown column 'author' in 'field list'

@@ -12,8 +12,8 @@ use App\Model;
 class Article
     extends Model
 {
-
-    public static $table = 'news';
+    protected static $mustNotBeFilled = ['id', 'author', 'author_id'];
+    protected static $table = 'news';
 
     public $title;
     public $text;
@@ -44,21 +44,28 @@ class Article
      * Заполняет поле author_id
      * @param array $data
      */
-    public function fill($data = [])
+    public function fill(array $data)
     {
         parent::fill($data);
 
-        if (!empty($data['author'])) {
-
-            if ($this->author_id) {
-                $author = Author::findById($this->author_id);
-            } else {
-                $author = new Author;
-            }
-
-            $author->fill($data['author']);
-            $author->save();
-            $this->author_id = $author->id;
+        if (null !== $this->author_id) {
+            $author = Author::findById($this->author_id);
+        } else {
+            $author = new Author;
         }
+
+        $author->fill($data['author']);
+        $author->save();
+        $this->author_id = $author->id;
+    }
+
+    protected function validateTitle($str):bool
+    {
+        return $this->validateString($str);
+    }
+
+    protected function validateText($str):bool
+    {
+        return $this->validateString($str);
     }
 }
