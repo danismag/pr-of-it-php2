@@ -5,7 +5,7 @@ namespace App\Controllers;
 
 
 use App\Controller, App\Models\Article;
-use App\MultiException;
+use App\MultiException, App\Exceptions\NotFoundException;
 
 class Admin extends Controller
 {
@@ -25,6 +25,9 @@ class Admin extends Controller
     public function actionEdit($id)
     {
         $article = Article::findById($id);
+        if (null === $article) {
+            throw new NotFoundException("Запись c id = $id не найдена!");
+        }
         $this->view->article = $article;
         $this->view->display(__DIR__ . '/../Templates/newArticle.php');
     }
@@ -46,6 +49,9 @@ class Admin extends Controller
     {
         if ($id) {
             $article = Article::findById($id);
+            if (null === $article) {
+                throw new NotFoundException("Запись c id = $id не найдена!");
+            }
         } else {
             $article = new Article;
         }
@@ -67,6 +73,9 @@ class Admin extends Controller
     public function actionDelete($id)
     {
         $article = Article::findById($id);
+        if (null === $article) {
+            throw new NotFoundException("Запись c id = $id не найдена!");
+        }
         if ($article) {
             $article->delete();
         }

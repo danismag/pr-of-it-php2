@@ -22,21 +22,23 @@ abstract class Model
         return (int)$db->query($sql, [], static::class)[0]->num;
     }
 
+    /**
+     * Возвращает объект из БД по id
+     * @param int $id
+     * @return object | null
+     *
+     */
     public static function findById($id)
     {
         $db = new Db();
         $sql = 'SELECT * FROM '. static::$table . ' WHERE id = :id';
-        $res = $db->query($sql, [':id' => $id], static::class);
-        if (empty($res)) {
-            throw new NotFoundException("Запись c id = $id не найдена!");
-        }
-        return $res[0];
+        return $db->query($sql, [':id' => $id], static::class)[0] ?? null;
     }
 
     /**
      * Возвращает указанное число последних значений
      * @param int $num
-     * @return array
+     * @return array | null
      */
     public static function findLast($num)
     {
@@ -44,7 +46,7 @@ abstract class Model
         $sql = 'SELECT * FROM '. static::$table . ' WHERE id > '.
             (static::countAll() > $num ? (static::countAll() - $num) : 0) .
             ' ORDER BY id DESC';
-        return $db->query($sql, [], static::class);
+        return $db->query($sql, [], static::class) ?? null;
     }
 
     /**
@@ -175,6 +177,11 @@ abstract class Model
         return false;
     }
 
+    /**
+     * Валидация строки
+     * @param string $str
+     * @return bool
+     */
     protected function validateString(string $str):bool
     {
         if (strlen(trim($str)) < 2) {

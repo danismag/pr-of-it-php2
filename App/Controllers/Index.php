@@ -4,7 +4,7 @@
 namespace App\Controllers;
 
 
-use App\Controller, App\Models\Article;
+use App\Controller, App\Models\Article, App\Exceptions\NotFoundException;
 
 class Index extends Controller
 {
@@ -17,6 +17,9 @@ class Index extends Controller
     public function actionOne($id = null)
     {
         $article = Article::findById($id);
+        if (null === $article) {
+            throw new NotFoundException("Запись c id = $id не найдена!");
+        }
         $this->view->article = $article;
         $this->view->display(__DIR__ . '/../Templates/articlePage.php');
     }
