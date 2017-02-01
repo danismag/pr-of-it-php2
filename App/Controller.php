@@ -10,6 +10,7 @@ use App\Exceptions\NotFoundException;
 abstract class Controller
 {
     protected $view;
+    private $method;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ abstract class Controller
     {
         if ($this->access()) {
             $action = 'action' . $actionName;
+            $this->method = $actionName;
 
             if (!method_exists($this, $action)) {
                 throw new NotFoundException("Метод $action в контроллере " . static::class . ' не найден');
@@ -34,6 +36,25 @@ abstract class Controller
 
         } else {
             throw new AccessDeniedException('Нет доступа');
+        }
+    }
+
+    /**
+     * Перредача шаблона во View
+     * @param string $template
+     */
+    public function display($template = '')
+    {
+        if ('' !== $template) {
+            if (file_exists(__DIR__ .'/Templates'. $template)) {
+                return $this->view->display($template);
+            }
+        }
+
+        $path = '/'. explode('\\', static::class)[2] .'/'. $this->method .'.html';
+
+        if (file_exists(__DIR__ .'/Templates'. $path)) {
+            return $this->view->display($path);
         }
     }
 

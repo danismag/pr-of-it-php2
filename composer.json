@@ -1,6 +1,7 @@
 {
   "require": {
 
-    "psr/log": "*"
+    "psr/log": "*",
+    "twig/twig": "*"
   }
 }

@@ -1,0 +1,34 @@
+{% extends 'Base.html' %}
+
+{% set title = 'Редактирование новостей' %}
+
+{% block content %}
+
+    <TABLE>
+        <CAPTION><H2>Новости</H2></CAPTION>
+        <TR>
+            <TH>Заголовок</TH>
+            <TH>Новость</TH>
+            <TH>Имя и фамилия автора</TH>
+        </TR>
+
+        {% for article in news %}
+
+            <TR>
+                <TD><a href="/index/one/{{ article.id }}">{{ article.title }}</a>
+                </TD>
+                <TD>{{ article.text }}</TD>
+                <TD>
+                    {{ article.author.firstName }}
+                    {{ article.author.lastName }}
+                </TD>
+                <TD><a href="/admin/edit/{{ article.id }}">Редактировать</a></TD>
+                <TD>&nbsp;</TD>
+                <TD><a href="/admin/delete/{{ article.id }}">Удалить</a></TD>
+            </TR>
+
+        {% endfor %}
+
+    </TABLE>
+
+{% endblock %}

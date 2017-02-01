@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+<nav>
+    <a href="/">На главную</a> |
+    <a href="/admin/new">Добавить новость</a> |
+    <a href="/admin/default">Редактировать новости</a>
+</nav>
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}{% endblock %}
+
+</body>
+</html>

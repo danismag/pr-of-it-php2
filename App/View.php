@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 use App\Models\Article;
 use App\Traits\TMagicProperties;
@@ -21,6 +19,17 @@ class View
 {
     use TMagicProperties;
 
+    const TEMPLATES = __DIR__ . '/Templates';
+    const LAYOUTS = __DIR__ . '/Layouts';
+
+    protected $twig;
+
+    public function __construct()
+    {
+        $loader = new \Twig_Loader_Filesystem([self::TEMPLATES, self::LAYOUTS]);
+        $this->twig = new \Twig_Environment($loader);
+    }
+
     /**
      * Подставляет в шаблон переданные данные и возвращает html
      * @param string $template
@@ -28,12 +37,13 @@ class View
      */
     public function render($template)
     {
-        foreach ($this->data as $key => $value) {
+        return $this->twig->render($template, $this->data);
+        /*foreach ($this->data as $key => $value) {
             $$key = $value;
         }
         ob_start();
         include $template;
-        return ob_get_clean();
+        return ob_get_clean();*/
     }
 
     /**

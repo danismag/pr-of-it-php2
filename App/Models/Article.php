@@ -40,6 +40,14 @@ class Article
         }
     }
 
+    public function __isset($key):bool
+    {
+        if ('author' === $key) {
+            return true;
+        }
+        return false;
+    }
+    
     /**
      * Заполняет поле author_id
      * @param array $data
