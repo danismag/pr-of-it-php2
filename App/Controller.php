@@ -4,6 +4,9 @@
 namespace App;
 
 
+use App\Exceptions\AccessDeniedException;
+use App\Exceptions\NotFoundException;
+
 abstract class Controller
 {
     protected $view;
@@ -24,13 +27,13 @@ abstract class Controller
             $action = 'action' . $actionName;
 
             if (!method_exists($this, $action)) {
-                die("Метод $action в контроллере " . static::class . ' не найден');
+                throw new NotFoundException("Метод $action в контроллере " . static::class . ' не найден');
             }
 
             $this->$action($params);
 
         } else {
-            die('Нет доступа');
+            throw new AccessDeniedException('Нет доступа');
         }
     }
 

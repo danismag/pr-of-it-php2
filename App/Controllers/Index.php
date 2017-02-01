@@ -24,7 +24,21 @@ class Index extends Controller
         $this->view->display(__DIR__ . '/../Templates/articlePage.php');
     }
 
-    public function actionError($message = 'Страница не найдена')
+    public function action404($message = 'Страница не найдена')
+    {
+        header('Not Found', true, 404);
+        $this->view->message = $message;
+        $this->view->display(__DIR__ . '/../Templates/errorPage.php');
+    }
+
+    public function action403($message = 'Доступ закрыт')
+    {
+        header('Access Denied', true, 403);
+        $this->view->message = $message;
+        $this->view->display(__DIR__ . '/../Templates/errorPage.php');
+    }
+
+    public function actionError($message = 'Ошибка приложения')
     {
         $this->view->message = $message;
         $this->view->display(__DIR__ . '/../Templates/errorPage.php');
