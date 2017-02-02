@@ -5,6 +5,8 @@ require __DIR__ . '/../App/autoload.php';
 use App\Exceptions\NotFoundException, App\Exceptions\DbException;
 use \App\Controllers\Index, \App\Logger, App\Exceptions\AccessDeniedException;
 
+PHP_Timer::start();
+
 $parts = explode('/', $_SERVER['REQUEST_URI']);
 
 $controllerName = ucfirst($parts[1] ?: 'Index');

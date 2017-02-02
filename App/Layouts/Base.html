@@ -5,15 +5,23 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<nav>
+<nav style="position: relative; float: left; top: 1%; height: 15%; width: 99%; background: whitesmoke; margin-bottom: 1%">
     <a href="/">На главную</a> |
     <a href="/admin/new">Добавить новость</a> |
     <a href="/admin/default">Редактировать новости</a>
 </nav>
 
-    {% block content %}{% endblock %}
+    <div style="position: relative; float: left; clear: both">
+        {% block content %}{% endblock %}
+    </div>
 
-    {% block footer %}{% endblock %}
+    {% block footer %}
+    <div align="center"  style="position: fixed; bottom: 1%; height: 5%; width: 99%; background: gainsboro">
+
+        <p style="color:darkolivegreen">{{ resources }}</p>
+
+    </div>
+    {% endblock %}
 
 </body>
 </html>

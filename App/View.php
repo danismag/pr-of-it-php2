@@ -37,13 +37,8 @@ class View
      */
     public function render($template)
     {
+        $this->data['resources'] = \PHP_Timer::resourceUsage();
         return $this->twig->render($template, $this->data);
-        /*foreach ($this->data as $key => $value) {
-            $$key = $value;
-        }
-        ob_start();
-        include $template;
-        return ob_get_clean();*/
     }
 
     /**
