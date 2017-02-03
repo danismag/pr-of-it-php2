@@ -11,7 +11,7 @@ abstract class Model
     public static function findAll()
     {
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::$table;
+        $sql = 'SELECT * FROM ' . static::$table .' GROUP BY id';
         return $db->query($sql, [], static::class);
     }
 
