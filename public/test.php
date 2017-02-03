@@ -1,15 +1,13 @@
 <?php
 
+use App\Db;
+
 require __DIR__ . '/../App/autoload.php';
 
-// Тестирование метода execute класса Db
-//include_once __DIR__ . '/../tests/DbTest.php';
+$db = new Db();
+$sql = 'SELECT * FROM news WHERE id=:id';
 
-// Тестирование метода findById класса Model
-//include_once __DIR__ . '/../tests/FindByIdTest.php';
+foreach ($db->queryEach($sql, ['id' => 40], \App\Models\Article::class) as $article) {
 
-// Тестирование метода getLast класса Article
-//include_once __DIR__ . '/../tests/GetLastTest.php';
-
-//Тестирование метода insert класса Model
-//include_once __DIR__ . '/../tests/InsertModelTest.php';
+    var_dump($article);
+}

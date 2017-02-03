@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b103630cefe7ddb0cd6fa442ff47029",
+    "content-hash": "860c9890b10276af58a090b2d4814095",
     "packages": [
         {
             "name": "phpunit/php-timer",
@@ -225,6 +225,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=7.1"
+    },
     "platform-dev": []
 }

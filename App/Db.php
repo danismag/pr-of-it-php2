@@ -55,9 +55,37 @@ class Db
     }
 
     /**
+     * @param $sql
+     * @param array $data
+     * @param null $class
+     * @return \Generator
+     * @throws DbException
+     */
+    public function queryEach($sql, $data = [], $class = null)
+    {
+        try {
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute($data);
+
+        }  catch (\PDOException $e) {
+            throw new DbException('Ошибка в запросе '. $sql . $e->getMessage());
+        }
+
+        if (null !== $class) {
+
+            $sth->setFetchMode(\PDO::FETCH_CLASS, $class);
+        }
+        while ($obj = $sth->fetch()) {
+
+            yield $obj;
+        }
+    }
+
+    /**
      * @param string $sql
      * @param array $params
      * @return bool
+     * @throws DbException
      */
     public function execute($sql, $params = []): bool
     {
