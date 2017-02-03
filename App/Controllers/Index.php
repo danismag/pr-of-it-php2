@@ -10,7 +10,7 @@ class Index extends Controller
 {
     public function actionDefault()
     {
-        $this->view->lastNews = Article::getLast(3);
+        $this->view->lastNews = Article::getLast();
         $this->display();
     }
 

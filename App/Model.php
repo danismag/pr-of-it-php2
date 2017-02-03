@@ -11,7 +11,7 @@ abstract class Model
     public static function findAll()
     {
         $db = new Db();
-        $sql = 'SELECT * FROM ' . static::$table .' GROUP BY id';
+        $sql = 'SELECT * FROM ' . static::$table .' ORDER BY id';
         return $db->query($sql, [], static::class);
     }
 
@@ -36,17 +36,24 @@ abstract class Model
     }
 
     /**
-     * Возвращает указанное число последних значений
+     * Возвращает указанное кол-во последних объектов или хотя бы один
      * @param int $num
      * @return array | null
      */
     public static function findLast($num)
     {
         $db = new Db();
-        $sql = 'SELECT * FROM '. static::$table . ' WHERE id > '.
-            (static::countAll() > $num ? (static::countAll() - $num) : 0) .
-            ' ORDER BY id DESC';
-        return $db->query($sql, [], static::class) ?? null;
+        $sql = 'SELECT * FROM '. static::$table . ' ORDER BY id DESC';
+        $res = [];
+        $i = 0;
+        foreach ($db->queryEach($sql, [], static::class) as $obj) {
+
+            $res[] = $obj;
+            if (++$i >= $num) {
+                break;
+            }
+        }
+        return $res ?: null;
     }
 
     /**
