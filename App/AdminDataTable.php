@@ -20,17 +20,13 @@ class AdminDataTable
      */
     public function render()
     {
-        ob_start();
         foreach ($this->models as $model) {
 
-            echo '<TR>';
             foreach ($this->functions as $function) {
 
-                echo '<TD>'. $function($model) .'</TD>';
+                yield $function($model);
             }
-            echo '</TR>';
         }
-        return ob_get_clean();
     }
 
 }
