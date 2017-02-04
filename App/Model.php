@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Exceptions\NotFoundException;
-
 abstract class Model
 {
     public $id;

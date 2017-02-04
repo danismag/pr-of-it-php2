@@ -15,9 +15,6 @@ class AdminDataTable
         $this->functions = $functions;
     }
 
-    /**
-     * @return string
-     */
     public function render()
     {
         foreach ($this->models as $model) {

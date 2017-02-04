@@ -25,6 +25,7 @@ class Admin extends Controller
     /**
      * Вывод страницы редактирования новости
      * @param string $id
+     * @throws \App\Exceptions\NotFoundException
      */
     public function actionEdit($id)
     {
@@ -48,6 +49,7 @@ class Admin extends Controller
     /**
      * Сохранение новости
      * @param string | null $id
+     * @throws \App\Exceptions\NotFoundException
      */
     public function actionSave($id = null)
     {
@@ -74,6 +76,10 @@ class Admin extends Controller
         }
     }
 
+    /**
+     * @param $id
+     * @throws \App\Exceptions\NotFoundException
+     */
     public function actionDelete($id)
     {
         $article = Article::findById($id);
