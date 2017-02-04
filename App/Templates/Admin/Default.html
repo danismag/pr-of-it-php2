@@ -12,7 +12,9 @@
             <TH>Имя и фамилия автора</TH>
         </TR>
 
-        {% for article in news %}
+        {{ news | raw }}
+
+       {# {% for article in news %}
 
             <TR>
                 <TD><a href="/index/one/{{ article.id }}">{{ article.title }}</a>
@@ -27,7 +29,7 @@
                 <TD><a href="/admin/delete/{{ article.id }}">Удалить</a></TD>
             </TR>
 
-        {% endfor %}
+        {% endfor %}#}
 
     </TABLE>
 

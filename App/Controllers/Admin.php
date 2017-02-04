@@ -15,10 +15,7 @@ class Admin extends Controller
      */
     public function actionDefault()
     {
-        $this->view->news = Article::findAll();
-        /*$this->view->tableContent = (new AdminDataTable(Article::findAll(), [
-
-        ]))->render();*/
+        $this->view->news = (new AdminDataTable(Article::findAll()))->render();
         $this->display();
     }
 
