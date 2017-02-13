@@ -4,33 +4,30 @@
 
 {% block content %}
 
-    <TABLE>
-        <CAPTION><H2>Новости</H2></CAPTION>
-        <TR>
-            <TH>Заголовок</TH>
-            <TH>Новость</TH>
-            <TH>Имя и фамилия автора</TH>
-        </TR>
+    <table>
+        <caption><H2>Новости</H2></caption>
+        <tr>
+            <th>Заголовок</th>
+            <th>Новость</th>
+            <th>Имя и фамилия автора</th>
+        </tr>
 
-        {{ news | raw }}
+        {% for article in news %}
 
-       {# {% for article in news %}
+            <tr>
+                <td><a href="/index/one/{{ article[0] }}">{{ article[1] }}</a>
+                </td>
+                <td>{{ article[2] }}</td>
+                <td>
+                    {{ article[3] }}
+                </td>
+                <td><a href="/admin/edit/{{ article[4] }}">Редактировать</a></td>
+                <td>&nbsp;</td>
+                <td><a href="/admin/delete/{{ article[5] }}">Удалить</a></td>
+            </tr>
 
-            <TR>
-                <TD><a href="/index/one/{{ article.id }}">{{ article.title }}</a>
-                </TD>
-                <TD>{{ article.text }}</TD>
-                <TD>
-                    {{ article.author.firstName }}
-                    {{ article.author.lastName }}
-                </TD>
-                <TD><a href="/admin/edit/{{ article.id }}">Редактировать</a></TD>
-                <TD>&nbsp;</TD>
-                <TD><a href="/admin/delete/{{ article.id }}">Удалить</a></TD>
-            </TR>
+        {% endfor %}
 
-        {% endfor %}#}
-
-    </TABLE>
+    </table>
 
 {% endblock %}

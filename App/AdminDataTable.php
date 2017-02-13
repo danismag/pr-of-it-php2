@@ -11,25 +11,66 @@ class AdminDataTable
     protected $functions = [];
     protected $models = [];
 
-    public function __construct(array $models, $functions = [])
+    /**
+     * AdminDataTable constructor.
+     * @param array $models
+     * @param string $funkArrayName
+     * @param array $functions
+     */
+    public function __construct(array $models, $funkArrayName = null, $functions = [])
     {
         $this->models = $models;
-        $this->functions = $functions ?: $this->getArticleFuncArray();
+
+        if (null === $funkArrayName) {
+
+            $this->functions = $functions;
+        } else {
+
+            $funkArrayMethod = 'get' . $funkArrayName . 'FuncArray';
+            $this->functions =
+                method_exists($this, $funkArrayMethod) ?
+                    $this->$funkArrayMethod() :
+                    [];
+        }
     }
 
     public function render()
     {
-        ob_start();
-        foreach ($this->models as $model) {
+        if (!empty($this->functions)) {
 
-            echo '<TR>';
-            foreach ($this->functions as $function) {
+            foreach ($this->models as $model) {
 
-                echo '<TD>'. $function($model) .'</TD>';
+                foreach ($this->functions as $function) {
+
+                    yield $function($model);
+                }
             }
-            echo '</TR>';
         }
-        return ob_get_clean();
+    }
+
+    /**
+     * Выдает строку таблицы в виде массива
+     * @return \Generator
+     */
+    public function renderRow()
+    {
+        if (count($this->functions) > 0) {
+
+            $row = [];
+            $row_count = count($this->functions);
+            foreach ($this->render() as $gen) {
+
+                $row[] = $gen;
+                $row_count--;
+                if ($row_count === 0) {
+
+                    yield $row;
+                    $row = [];
+                    $row_count = count($this->functions);
+                }
+            }
+        }
+
     }
 
     protected function getArticleFuncArray():array
@@ -37,7 +78,11 @@ class AdminDataTable
         return [
             function(Article $article)
             {
-                return "<a href='/index/one/$article->id'>$article->title</a>";
+                return $article->id;
+            },
+            function(Article $article)
+            {
+                return $article->title;
             },
             function(Article $article)
             {
@@ -49,11 +94,11 @@ class AdminDataTable
             },
             function(Article $article)
             {
-                return "<a href='/admin/edit/$article->id'>Редактировать</a>";
+                return $article->id;
             },
             function(Article $article)
             {
-                return "<a href='/admin/delete/$article->id'>Удалить</a>";
+                return $article->id;
             },
         ];
     }

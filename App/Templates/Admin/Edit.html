@@ -12,7 +12,7 @@
     {% endif %}
     <br><br>
 
-    <form method="POST" action="/admin/save/{{ article.id }}">
+    <form method="post" action="/admin/save/{{ article.id }}">
 
         <label for="inputTitle">Заголовок новости</label>
         <input type="text" name="article[title]" id="inputTitle" size="40%" placeholder="Введите заголовок новости" value="{{ article.title }}">
