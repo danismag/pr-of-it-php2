@@ -14,63 +14,28 @@ class AdminDataTable
     /**
      * AdminDataTable constructor.
      * @param array $models
-     * @param string $funkArrayName
      * @param array $functions
      */
-    public function __construct(array $models, $funkArrayName = null, $functions = [])
+    public function __construct(array $models, $functions = [])
     {
         $this->models = $models;
-
-        if (null === $funkArrayName) {
-
-            $this->functions = $functions;
-        } else {
-
-            $funkArrayMethod = 'get' . $funkArrayName . 'FuncArray';
-            $this->functions =
-                method_exists($this, $funkArrayMethod) ?
-                    $this->$funkArrayMethod() :
-                    [];
-        }
+        $this->functions = $functions ?: $this->getArticleFuncArray();
     }
 
-    public function render()
+    public function render():array
     {
-        if (!empty($this->functions)) {
-
-            foreach ($this->models as $model) {
-
-                foreach ($this->functions as $function) {
-
-                    yield $function($model);
-                }
-            }
-        }
-    }
-
-    /**
-     * Выдает строку таблицы в виде массива
-     * @return \Generator
-     */
-    public function renderRow()
-    {
-        if (count($this->functions) > 0) {
+        $table = [];
+        foreach ($this->models as $model) {
 
             $row = [];
-            $row_count = count($this->functions);
-            foreach ($this->render() as $gen) {
+            foreach ($this->functions as $function) {
 
-                $row[] = $gen;
-                $row_count--;
-                if ($row_count === 0) {
-
-                    yield $row;
-                    $row = [];
-                    $row_count = count($this->functions);
-                }
+                $row[] = $function($model);
             }
+            $table[] = $row;
         }
 
+        return $table;
     }
 
     protected function getArticleFuncArray():array
