@@ -4,7 +4,6 @@
 namespace App;
 
 
-use App\Models\Article;
 
 class AdminDataTable
 {
@@ -16,10 +15,10 @@ class AdminDataTable
      * @param array $models
      * @param array $functions
      */
-    public function __construct(array $models, $functions = [])
+    public function __construct(array $models, $functions)
     {
         $this->models = $models;
-        $this->functions = $functions ?: $this->getArticleFuncArray();
+        $this->functions = $functions;
     }
 
     public function render():array
@@ -38,7 +37,7 @@ class AdminDataTable
         return $table;
     }
 
-    protected function getArticleFuncArray():array
+    /*protected function getArticleFuncArray():array
     {
         return [
             function(Article $article)
@@ -66,6 +65,6 @@ class AdminDataTable
                 return $article->id;
             },
         ];
-    }
+    }*/
 
 }
