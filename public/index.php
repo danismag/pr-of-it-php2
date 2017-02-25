@@ -26,7 +26,7 @@ try {
 } catch (DbException $e) {
 
     (new Logger)->error($e);
-    (new Index)->actionError($e);
+    (new Index)->actionError($e->getMessage());
 
 } catch (NotFoundException $e) {
 
@@ -41,6 +41,6 @@ try {
 } catch (\Exception $e) {
 
     (new Logger)->debug($e);
-    (new Index)->actionError();
+    (new Index)->actionError($e->getMessage());
 }
 
