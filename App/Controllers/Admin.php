@@ -3,8 +3,6 @@
 
 namespace App\Controllers;
 
-
-use App\AdminDataTable;
 use App\Controller, App\Models\Article;
 use App\MultiException, App\Exceptions\NotFoundException;
 
@@ -15,8 +13,8 @@ class Admin extends Controller
      */
     public function actionDefault()
     {
-        $this->view->news = (new AdminDataTable(Article::findAll()))->render();
-        $this->display();
+        $this->view->news = Article::findAll();
+        $this->view->display(__DIR__ . '/../Templates/Admin/Default.html');
     }
 
     /**
@@ -31,7 +29,7 @@ class Admin extends Controller
             throw new NotFoundException("Запись c id = $id не найдена!");
         }
         $this->view->article = $article;
-        $this->display();
+        $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
     }
 
     /**
@@ -40,7 +38,7 @@ class Admin extends Controller
     public function actionNew()
     {
         $this->view->article = new Article;
-        $this->display('/Admin/Edit.html');
+        $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
     }
 
     /**
@@ -69,7 +67,7 @@ class Admin extends Controller
 
             $this->view->errors = $e;
             $this->view->article = $article;
-            $this->display('/Admin/Edit.html');
+            $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
         }
     }
 

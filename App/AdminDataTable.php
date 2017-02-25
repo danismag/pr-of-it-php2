@@ -36,35 +36,4 @@ class AdminDataTable
 
         return $table;
     }
-
-    /*protected function getArticleFuncArray():array
-    {
-        return [
-            function(Article $article)
-            {
-                return $article->id;
-            },
-            function(Article $article)
-            {
-                return $article->title;
-            },
-            function(Article $article)
-            {
-                return $article->text;
-            },
-            function(Article $article)
-            {
-                return $article->author->firstName .' '. $article->author->lastName;
-            },
-            function(Article $article)
-            {
-                return $article->id;
-            },
-            function(Article $article)
-            {
-                return $article->id;
-            },
-        ];
-    }*/
-
 }
