@@ -9,7 +9,7 @@ use App\Traits\TMagicProperties;
  * Class View
  * @package App
  * @property Article article
- * @property array news
+ * @property array adminNews
  * @property array lastNews
  * @property string message
  * @property array errors
@@ -37,6 +37,7 @@ class View
      */
     public function render($template)
     {
+        $this->beforeRender();
         $this->data['resources'] = \PHP_Timer::resourceUsage();
         return $this->twig->render($template, $this->data);
     }
@@ -48,6 +49,19 @@ class View
     public function display($template)
     {
         echo $this->render($template);
+    }
+
+    /**
+     * Особые случаи отрисовки шаблона
+     */
+    protected function beforeRender()
+    {
+        if ($this->data['adminNews']) {
+
+            $this->data['adminNewsTable'] = (new AdminDataTable(
+                $this->data['adminNews'],
+                $this->getArticleFuncArray()))->render();
+        }
     }
 
     protected function getArticleFuncArray():array

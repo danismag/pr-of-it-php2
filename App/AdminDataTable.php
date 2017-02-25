@@ -15,7 +15,7 @@ class AdminDataTable
      * @param array $models
      * @param array $functions
      */
-    public function __construct(array $models, $functions)
+    public function __construct(array $models, array $functions)
     {
         $this->models = $models;
         $this->functions = $functions;

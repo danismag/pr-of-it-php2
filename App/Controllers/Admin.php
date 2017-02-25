@@ -13,7 +13,7 @@ class Admin extends Controller
      */
     public function actionDefault()
     {
-        $this->view->news = Article::findAll();
+        $this->view->adminNews = Article::findAll();
         $this->view->display(__DIR__ . '/../Templates/Admin/Default.html');
     }
 
