@@ -14,7 +14,7 @@ class Admin extends Controller
     protected function actionDefault()
     {
         $this->view->adminNews = Article::findAll();
-        $this->view->display(__DIR__ . '/../Templates/Admin/Default.html');
+        $this->view->display('/Admin/Default.html');
     }
 
     /**
@@ -29,7 +29,7 @@ class Admin extends Controller
             throw new NotFoundException("Запись c id = $id не найдена!");
         }
         $this->view->article = $article;
-        $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
+        $this->view->display('/Admin/Edit.html');
     }
 
     /**
@@ -38,7 +38,7 @@ class Admin extends Controller
     protected function actionNew()
     {
         $this->view->article = new Article;
-        $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
+        $this->view->display('/Admin/Edit.html');
     }
 
     /**
