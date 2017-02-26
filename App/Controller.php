@@ -51,7 +51,8 @@ abstract class Controller
             }
         }
 
-        $path = '/'. explode('\\', static::class)[2] .'/'. $this->method .'.html';
+        $path = '/' . explode('\\', static::class)[2] .
+            '/' . $this->method . '.html';
 
         if (file_exists(__DIR__ .'/Templates'. $path)) {
             return $this->view->display($path);

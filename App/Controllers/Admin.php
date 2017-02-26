@@ -11,7 +11,7 @@ class Admin extends Controller
     /**
      * Вывод главной страницы редактирования
      */
-    public function actionDefault()
+    protected function actionDefault()
     {
         $this->view->adminNews = Article::findAll();
         $this->view->display(__DIR__ . '/../Templates/Admin/Default.html');
@@ -22,7 +22,7 @@ class Admin extends Controller
      * @param string $id
      * @throws \App\Exceptions\NotFoundException
      */
-    public function actionEdit($id)
+    protected function actionEdit($id)
     {
         $article = Article::findById($id);
         if (null === $article) {
@@ -35,7 +35,7 @@ class Admin extends Controller
     /**
      * Вывод страницы создания новости
      */
-    public function actionNew()
+    protected function actionNew()
     {
         $this->view->article = new Article;
         $this->view->display(__DIR__ . '/../Templates/Admin/Edit.html');
@@ -46,7 +46,7 @@ class Admin extends Controller
      * @param string | null $id
      * @throws \App\Exceptions\NotFoundException
      */
-    public function actionSave($id = null)
+    protected function actionSave($id = null)
     {
         if ($id) {
             $article = Article::findById($id);
@@ -75,7 +75,7 @@ class Admin extends Controller
      * @param $id
      * @throws \App\Exceptions\NotFoundException
      */
-    public function actionDelete($id)
+    protected function actionDelete($id)
     {
         $article = Article::findById($id);
         if (null === $article) {

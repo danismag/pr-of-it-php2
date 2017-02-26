@@ -56,7 +56,7 @@ class View
      */
     protected function beforeRender()
     {
-        if ($this->data['adminNews']) {
+        if (isset($this->data['adminNews'])) {
 
             $this->data['adminNewsTable'] = (new AdminDataTable(
                 $this->data['adminNews'],

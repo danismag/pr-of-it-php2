@@ -12,20 +12,16 @@
             <th>Имя и фамилия автора</th>
         </tr>
 
-        {{ adminNewsTable }}
-
-        {% for article in news %}
+        {% for row in adminNewsTable %}
 
             <tr>
-                <td><a href="/index/one/{{ article[0] }}">{{ article[1] }}</a>
-                </td>
-                <td>{{ article[2] }}</td>
-                <td>
-                    {{ article[3] }}
-                </td>
-                <td><a href="/admin/edit/{{ article[4] }}">Редактировать</a></td>
-                <td>&nbsp;</td>
-                <td><a href="/admin/delete/{{ article[5] }}">Удалить</a></td>
+                {% for cell in row %}
+                    <td>
+
+                        {{ cell }}
+
+                    </td>
+                {% endfor %}
             </tr>
 
         {% endfor %}

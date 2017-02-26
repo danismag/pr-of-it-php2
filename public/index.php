@@ -26,21 +26,21 @@ try {
 } catch (DbException $e) {
 
     (new Logger)->error($e);
-    (new Index)->actionError($e->getMessage());
+    (new Index)->action('Error', $e->getMessage());
 
 } catch (NotFoundException $e) {
 
     (new Logger)->info($e);
-    (new Index)->action404();
+    (new Index)->action('404');
 
 } catch (AccessDeniedException $e) {
 
     (new Logger)->warning($e);
-    (new Index)->action403();
+    (new Index)->action('403');
 
 } catch (\Exception $e) {
 
     (new Logger)->debug($e);
-    (new Index)->actionError($e->getMessage());
+    (new Index)->action('Error', $e->getMessage());
 }
 
