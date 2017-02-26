@@ -31,12 +31,12 @@ try {
 } catch (NotFoundException $e) {
 
     (new Logger)->info($e);
-    (new Index)->action('404');
+    (new Index)->action('404', $e->getMessage());
 
 } catch (AccessDeniedException $e) {
 
     (new Logger)->warning($e);
-    (new Index)->action('403');
+    (new Index)->action('403', $e->getMessage());
 
 } catch (\Exception $e) {
 
