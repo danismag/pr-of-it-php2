@@ -20,6 +20,7 @@ try {
         throw new NotFoundException('Контроллер ' . $controllerClass . ' не найден');
     }
 
+    /** @var \App\Controller $controller */
     $controller = new $controllerClass;
     $controller->action($actionName, $params);
 

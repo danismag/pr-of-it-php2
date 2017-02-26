@@ -71,8 +71,8 @@ class View
             function(Article $article)
             {
                 return
-                    '<a href=\"/index/one/' . $article->id .
-                    '\">' . $article->title . '</a>';
+                    '<a href="/index/one/' . $article->id .
+                    '">' . $article->title . '</a>';
             },
             function(Article $article)
             {
@@ -85,14 +85,14 @@ class View
             function(Article $article)
             {
                 return
-                    '<a href=\"/admin/edit/' . $article->id .
-                    '\">Редактировать</a>';
+                    '<a href="/admin/edit/' . $article->id .
+                    '">Редактировать</a>';
             },
             function(Article $article)
             {
                 return
-                    '<a href=\"/admin/delete/' . $article->id .
-                    '\">Удалить</a>';
+                    '<a href="/admin/delete/' . $article->id .
+                    '">Удалить</a>';
             },
         ];
     }
