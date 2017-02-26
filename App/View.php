@@ -60,7 +60,8 @@ class View
 
             $this->data['adminNewsTable'] = (new AdminDataTable(
                 $this->data['adminNews'],
-                $this->getArticleFuncArray()))->render();
+                $this->getArticleFuncArray())
+                )->render();
         }
     }
 
@@ -69,11 +70,9 @@ class View
         return [
             function(Article $article)
             {
-                return $article->id;
-            },
-            function(Article $article)
-            {
-                return $article->title;
+                return
+                    '<a href=\"/index/one/' . $article->id .
+                    '\">' . $article->title . '</a>';
             },
             function(Article $article)
             {
@@ -81,15 +80,19 @@ class View
             },
             function(Article $article)
             {
-                return $article->author->firstName .' '. $article->author->lastName;
+                return $article->author->firstName . ' ' . $article->author->lastName;
             },
             function(Article $article)
             {
-                return $article->id;
+                return
+                    '<a href=\"/admin/edit/' . $article->id .
+                    '\">Редактировать</a>';
             },
             function(Article $article)
             {
-                return $article->id;
+                return
+                    '<a href=\"/admin/delete/' . $article->id .
+                    '\">Удалить</a>';
             },
         ];
     }
