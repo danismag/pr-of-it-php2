@@ -12,19 +12,7 @@
             <th>Имя и фамилия автора</th>
         </tr>
 
-        {% for row in adminNewsTable %}
-
-            <tr>
-                {% for cell in row %}
-                    <td>
-
-                        {{ cell | raw }}
-
-                    </td>
-                {% endfor %}
-            </tr>
-
-        {% endfor %}
+        {{ adminNewsTable | raw }}
 
     </table>
 

@@ -21,17 +21,17 @@ class AdminDataTable
         $this->functions = $functions;
     }
 
-    public function render():array
+    public function render():string
     {
-        $table = [];
+        $table = '';
         foreach ($this->models as $model) {
 
-            $row = [];
+            $table .= '<tr>';
             foreach ($this->functions as $function) {
 
-                $row[] = $function($model);
+                $table .= '<td>' . $function($model) . '</td>';
             }
-            $table[] = $row;
+            $table .= '</tr>';
         }
 
         return $table;
