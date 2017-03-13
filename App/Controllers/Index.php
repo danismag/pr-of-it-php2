@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Controller;
+use App\Models\TagsExtractor;
 
 class Index extends Controller
 {
@@ -15,7 +16,11 @@ class Index extends Controller
 
     protected function actionFirstTask()
     {
-
+        if (isset($_POST['text'])) {
+            $extractor =  new TagsExtractor($_POST['text']);
+            $this->view->arrayValues = $extractor->getTagsValue();
+            $this->view->arrayTags = $extractor->getTagsDescription();
+        }
     }
 
     protected function action404($message = 'Страница не найдена')

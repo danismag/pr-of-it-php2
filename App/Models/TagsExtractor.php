@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class TextTags
+class TagsExtractor
 {
     protected $text;
 

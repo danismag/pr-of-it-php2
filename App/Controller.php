@@ -7,6 +7,11 @@ namespace App;
 use App\Exceptions\AccessDeniedException;
 use App\Exceptions\NotFoundException;
 
+/**
+ * Class Controller
+ * @package App
+ * @property \App\View $view
+ */
 abstract class Controller
 {
     protected $view;
