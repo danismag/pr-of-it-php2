@@ -17,11 +17,6 @@ abstract class Controller
         $this->view = new View;
     }
 
-    protected function access():bool
-    {
-        return true;
-    }
-
     public function action($actionName, $params = null)
     {
         if ($this->access()) {
@@ -33,6 +28,7 @@ abstract class Controller
             }
 
             $this->$action($params);
+            $this->afterAction();
 
         } else {
             throw new AccessDeniedException('Нет доступа');
@@ -43,7 +39,7 @@ abstract class Controller
      * Перредача шаблона во View
      * @param string $template
      */
-    public function display($template = '')
+    protected function transferTemplateToView($template = '')
     {
         if ('' !== $template) {
             if (file_exists(__DIR__ .'/Templates'. $template)) {
@@ -57,6 +53,16 @@ abstract class Controller
         if (file_exists(__DIR__ .'/Templates'. $path)) {
             return $this->view->display($path);
         }
+    }
+
+    protected function afterAction()
+    {
+        $this->transferTemplateToView();
+    }
+
+    protected function access():bool
+    {
+        return true;
     }
 
 }

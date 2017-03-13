@@ -11,19 +11,16 @@ class Admin extends Controller
     protected function actionDefault()
     {
 
-        $this->view->display('/Admin/Default.html');
     }
 
     protected function actionEdit($id)
     {
 
-        $this->view->display('/Admin/Edit.html');
     }
 
     protected function actionNew()
     {
 
-        $this->view->display('/Admin/Edit.html');
     }
 
     protected function actionSave($id = null)
@@ -34,7 +31,5 @@ class Admin extends Controller
     protected function actionDelete($id)
     {
 
-        header('Location: /admin/default');
-        exit;
     }
 }
