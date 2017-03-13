@@ -1,0 +1,31 @@
+.navbar {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+body {
+    padding-top: 20px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+table, th {
+    text-align: center;
+}
+
+nav ul li {
+    font-size: 18px;
+}
+
+nav ul li ul li {
+    font-size: 16px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 30px;
+    background-color: cornsilk;
+}

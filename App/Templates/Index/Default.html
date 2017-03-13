@@ -1,31 +1,19 @@
 {% extends 'Base.html' %}
 
-{% set title = 'Главная страница' %}
+{% block title %}Главная страница{% endblock %}
 
 {% block content %}
 
-    <TABLE>
-        <CAPTION><H2>Последние новости</H2></CAPTION>
-        <TR>
-            <TH>Заголовок</TH>
-            <TH>Новость</TH>
-            <TH>Имя и фамилия автора</TH>
-        </TR>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                1 секция
+            </div>
+            <div class="col-md-6">
+                2 секция
+            </div>
+        </div>
+    </div>
 
-        {% for article in lastNews %}
-
-        <TR>
-            <TD><a href="/index/one/{{ article.id }}">{{ article.title }}</a>
-            </TD>
-            <TD>{{ article.text }}</TD>
-            <TD>
-                {{ article.author.firstName }}
-                {{ article.author.lastName }}
-            </TD>
-        </TR>
-
-        {% endfor %}
-
-    </TABLE>
 
 {% endblock %}

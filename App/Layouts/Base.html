@@ -2,26 +2,49 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{% block title %}{% endblock %}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <link href="Assets/wind7.css" rel="stylesheet">
 </head>
 <body>
-<nav style="position: relative; background: whitesmoke; margin: 1%; padding: 10px 5px">
-    <a href="/">На главную</a> |
-    <a href="/admin/new">Добавить новость</a> |
-    <a href="/admin/default">Редактировать новости</a>
-</nav>
+<div class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">SevenWind</a>
+            </div>
 
-    <div style="position: relative">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">1 задание</a></li>
+                    <li><a href="#">2 задание</a></li>
+                    <li><a href="#">3 задание</a></li>
+                    <li><a href="#">4 задание</a></li>
+                    <li><a href="#">5 задание</a></li>
+                    <li><a href="#">6 задание</a></li>
+                    <li><a href="#">7 задание</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+    <div class="container">
+
         {% block content %}{% endblock %}
+
     </div>
 
     {% block footer %}
-    <div align="center"  style="position: relative; padding: 1px; margin: 20px 5px; bottom: 10px; width: 99%; background: gainsboro">
+        <footer class="footer">
+                <div class="container">
+                    <p class="text-muted">{{ resources }}</p>
+                </div>
+        </footer>
 
-        <p style="color:darkolivegreen">{{ resources }}</p>
-
-    </div>
     {% endblock %}
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
