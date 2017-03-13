@@ -8,9 +8,7 @@ use App\Traits\TMagicProperties;
 /**
  * Class View
  * @package App
- * @property Article article
- * @property array adminNews
- * @property array lastNews
+ *
  * @property string message
  * @property array errors
  */
@@ -56,46 +54,9 @@ class View
      */
     protected function beforeRender()
     {
-        if (isset($this->data['adminNews'])) {
 
-            $this->data['adminNewsTable'] = (new AdminDataTable(
-                $this->data['adminNews'],
-                $this->getArticleFuncArray())
-                )->render();
-        }
     }
 
-    protected function getArticleFuncArray():array
-    {
-        return [
-            function(Article $article)
-            {
-                return
-                    '<a href="/index/one/' . $article->id .
-                    '">' . $article->title . '</a>';
-            },
-            function(Article $article)
-            {
-                return $article->text;
-            },
-            function(Article $article)
-            {
-                return $article->author->firstName . ' ' . $article->author->lastName;
-            },
-            function(Article $article)
-            {
-                return
-                    '<a href="/admin/edit/' . $article->id .
-                    '">Редактировать</a>';
-            },
-            function(Article $article)
-            {
-                return
-                    '<a href="/admin/delete/' . $article->id .
-                    '">Удалить</a>';
-            },
-        ];
-    }
 
     /**
      * Реализация интерфейса Countable

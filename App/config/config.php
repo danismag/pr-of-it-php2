@@ -3,7 +3,7 @@
 return [
     'db' => [
         'host' => 'localhost',
-        'dbname' => 'php2',
+        'dbname' => 'sevenWind',
         'user' => 'danis',
         'password' => ''
     ]

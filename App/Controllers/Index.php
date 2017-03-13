@@ -10,17 +10,13 @@ class Index extends Controller
 {
     protected function actionDefault()
     {
-        $this->view->lastNews = Article::getLast();
+
         $this->display();
     }
 
     protected function actionOne($id = null)
     {
-        $article = Article::findById($id);
-        if (null === $article) {
-            throw new NotFoundException("Запись c id = $id не найдена!");
-        }
-        $this->view->article = $article;
+
         $this->display();
     }
 
