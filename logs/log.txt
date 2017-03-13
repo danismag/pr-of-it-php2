@@ -155,3 +155,7 @@
 2017-03-13 15:03:24 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 27 | Метод actionThirdTask в контроллере App\Controllers\Index не найден
 2017-03-13 15:03:24 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 27 | Метод actionFourthTask в контроллере App\Controllers\Index не найден
 2017-03-13 15:03:25 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 27 | Метод actionFifthTask в контроллере App\Controllers\Index не найден
+2017-03-13 21:03:59 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionSecondTask в контроллере App\Controllers\Index не найден
+2017-03-13 21:03:07 | Уровень debug | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Templates/Index/FirstTask.html | Строка 40 | Unexpected "endfor" tag (expecting closing tag for the "if" tag defined near line 23).
+2017-03-13 21:03:15 | Уровень debug | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Templates/Index/FirstTask.html | Строка 40 | Unexpected "endfor" tag (expecting closing tag for the "if" tag defined near line 23).
+2017-03-13 21:03:17 | Уровень debug | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Templates/Index/FirstTask.html | Строка 40 | Unexpected "endfor" tag (expecting closing tag for the "if" tag defined near line 23).

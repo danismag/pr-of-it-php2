@@ -23,9 +23,10 @@ class TagsExtractor
                 $text,
                 $matches)) {
 
-            $result[$matches['tag']] = $result[$matches['tagval']];
+            $result[$matches['tag']] = $matches['tagval'];
+
             $matches = [];
-            $text = preg_replace('~.*\[.*\].*\[\/.*\]~', '', $text);
+            $text = preg_replace('~.*\[.*\].*\[\/.*\]~U', '', $text, 1);
         }
         return $result;
     }

@@ -19,7 +19,8 @@ class Index extends Controller
         if (isset($_POST['text'])) {
             $extractor =  new TagsExtractor($_POST['text']);
             $this->view->arrayValues = $extractor->getTagsValue();
-            $this->view->arrayTags = $extractor->getTagsDescription();
+//            $this->view->arrayTags = $extractor->getTagsDescription();
+            $this->view->text = $_POST['text'];
         }
     }
 

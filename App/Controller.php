@@ -11,6 +11,8 @@ use App\Exceptions\NotFoundException;
  * Class Controller
  * @package App
  * @property \App\View $view
+ * @property array arrayValues
+ * @property array arrayTags
  */
 abstract class Controller
 {
