@@ -35,6 +35,12 @@ abstract class Controller
         }
     }
 
+    public function redirect($url = '/')
+    {
+        header('Location: ' . $url, true, 302);
+        exit;
+    }
+
     /**
      * Перредача шаблона во View
      * @param string $template

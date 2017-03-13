@@ -4,7 +4,7 @@
 namespace App\Controllers;
 
 
-use App\Controller,App\Exceptions\NotFoundException;
+use App\Controller;
 
 class Index extends Controller
 {
@@ -13,7 +13,7 @@ class Index extends Controller
 
     }
 
-    protected function actionOne($id = null)
+    protected function actionFirstTask()
     {
 
     }
