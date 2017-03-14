@@ -99,6 +99,27 @@ class Db
         }
     }
 
+    /**
+     * @param $sql
+     * @return \Generator
+     * @throws \App\Exceptions\DbException
+     */
+    public function prepareExecute($sql)
+    {
+        try {
+
+            $sth = $this->dbh->prepare($sql);
+
+            while ('stop' !== yield) {
+
+                yield $sth->execute(yield);
+            }
+
+        } catch (\PDOException $e) {
+            throw new DbException($e->getMessage());
+        }
+    }
+
     public function lastId(): int
     {
         try {

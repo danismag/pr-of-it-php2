@@ -9,6 +9,8 @@ use App\Model;
 
 class MysqlTree extends Model
 {
+    const RECORD_NUMBER = 100;
+
     public static $table = 'tree5';
 
     public function __construct()
