@@ -5,6 +5,8 @@ namespace App\Controllers;
 
 
 use App\Controller;
+use App\Db;
+use App\Models\MysqlTree;
 use App\Models\TagsExtractor;
 
 class Index extends Controller
@@ -35,7 +37,8 @@ class Index extends Controller
 
     protected function actionThirdTask()
     {
-        
+        var_dump(new MysqlTree());
+
     }
 
     protected function action404($message = 'Страница не найдена')

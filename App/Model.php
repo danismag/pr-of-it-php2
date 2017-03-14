@@ -2,20 +2,22 @@
 
 namespace App;
 
+use App\Traits\TSingleton;
+
 abstract class Model
 {
     public $id;
 
     public static function findAll()
     {
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'SELECT * FROM ' . static::$table .' ORDER BY id';
         return $db->query($sql, [], static::class);
     }
 
     public static function countAll()
     {
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'SELECT COUNT(*) AS num FROM ' . static::$table;
         return (int)$db->query($sql, [], static::class)[0]->num;
     }
@@ -28,7 +30,7 @@ abstract class Model
      */
     public static function findById($id)
     {
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'SELECT * FROM '. static::$table . ' WHERE id = :id';
         return $db->query($sql, [':id' => $id], static::class)[0] ?? null;
     }
@@ -40,7 +42,7 @@ abstract class Model
      */
     public static function findLast($num)
     {
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'SELECT * FROM '. static::$table . ' ORDER BY id DESC';
         $res = [];
         $i = 0;
@@ -84,7 +86,7 @@ abstract class Model
      */
     public function delete(): bool
     {
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'DELETE FROM ' . static::$table . '
         WHERE id=:id';
         return $db->execute($sql, [':id' => $this->id]);
@@ -139,7 +141,7 @@ abstract class Model
             }
             $sets[] = $key . '=:' . $key;
         }
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'UPDATE ' . static::$table . ' 
         SET ' . implode(',', $sets) . ' 
         WHERE id=:id';
@@ -166,7 +168,7 @@ abstract class Model
             $keys[] = ':' . $key;
             $fields[] = $key;
         }
-        $db = new Db();
+        $db = Db::instance();
         $sql = 'INSERT INTO ' . static::$table .
             ' (' .
             implode(', ', $fields) .

@@ -7,10 +7,7 @@ trait TSingleton
 {
     protected static $instance;
 
-    protected function __construct()
-    {
-
-    }
+    abstract protected function __construct();
 
     public static function instance()
     {

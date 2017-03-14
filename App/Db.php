@@ -3,13 +3,15 @@
 namespace App;
 
 use App\Exceptions\DbException;
+use App\Traits\TSingleton;
 
 class Db
 {
+    use TSingleton;
 
     protected $dbh;
 
-    public function __construct()
+    protected function __construct()
     {
         $config = Config::instance();
         $dsn = 'mysql:host=' .
@@ -33,7 +35,7 @@ class Db
     /**
      * @param $sql
      * @param array $data
-     * @param null $class
+     * @param \App\Model $class
      * @return mixed
      * @throws DbException
      */
