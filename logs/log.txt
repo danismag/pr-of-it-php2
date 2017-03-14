@@ -161,3 +161,5 @@
 2017-03-13 21:03:17 | Уровень debug | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Templates/Index/FirstTask.html | Строка 40 | Unexpected "endfor" tag (expecting closing tag for the "if" tag defined near line 23).
 2017-03-14 11:03:50 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/public/index.php | Строка 20 | Контроллер \App\Controllers\Favicon.ico не найден
 2017-03-14 11:03:51 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionSecondTask в контроллере App\Controllers\Index не найден
+2017-03-14 13:03:17 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionSecondTask в контроллере App\Controllers\Index не найден
+2017-03-14 13:03:24 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionThirdTask в контроллере App\Controllers\Index не найден

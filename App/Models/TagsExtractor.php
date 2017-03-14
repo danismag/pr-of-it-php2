@@ -27,6 +27,13 @@ class TagsExtractor
             '~.*\[.*:+.+\].*\[\/.*\]~U');
     }
 
+    public function getKeysValue():array
+    {
+        return $this->extractTags(
+            '~.*(?P<key>(raz|dva|tri)):(?P<value>.*)(?=raz:|dva:|tri:|\Z)~U',
+            '~.*(?:raz:|dva:|tri:).*(?=raz:|dva:|tri:|\Z)~U');
+    }
+
     protected function extractTags(string $searchPattern, string $excludePattern):array
     {
         $result = [];

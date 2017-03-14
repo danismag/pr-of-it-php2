@@ -11,6 +11,10 @@ use App\Traits\TMagicProperties;
  *
  * @property string message
  * @property array errors
+ * @property array arrayValues
+ * @property array arrayTags
+ * @property array keyValues
+ * @property string text
  */
 class View
     implements \Countable, \Iterator

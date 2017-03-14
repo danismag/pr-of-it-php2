@@ -24,6 +24,16 @@ class Index extends Controller
         }
     }
 
+    protected function actionSecondTask()
+    {
+        if (isset($_POST['text'])) {
+            $extractor =  new TagsExtractor($_POST['text']);
+            $this->view->keyValues = $extractor->getKeysValue();
+            $this->view->text = $_POST['text'];
+        }
+        
+    }
+
     protected function action404($message = 'Страница не найдена')
     {
         header("Not Found", true, 404);
