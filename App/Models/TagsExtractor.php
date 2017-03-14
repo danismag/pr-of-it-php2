@@ -16,15 +16,15 @@ class TagsExtractor
     public function getTagsValue():array
     {
         return $this->extractTags(
-            '~\[(?P<key>\w+):?.*\](?P<value>.+)\[\/(?P=key)\]~',
+            '~\[(?P<key>\w+):?.*\](?P<value>.*)\[\/(?P=key)\]~',
             '~.*\[.*\].*\[\/.*\]~U');
     }
 
     public function getTagsDescription():array
     {
         return $this->extractTags(
-            '~\[(?P<key>\w+):+(?P<value>.+)\].+\[\/(?P=key)\]~',
-            '~.*\[.*:+.+\].+\[\/.*\]~U');
+            '~\[(?P<key>\w+):+(?P<value>.+)\].*\[\/(?P=key)\]~',
+            '~.*\[.*:+.+\].*\[\/.*\]~U');
     }
 
     protected function extractTags(string $searchPattern, string $excludePattern):array
