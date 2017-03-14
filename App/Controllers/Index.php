@@ -30,7 +30,11 @@ class Index extends Controller
             $extractor =  new TagsExtractor($_POST['text']);
             $this->view->keyValues = $extractor->getKeysValue();
             $this->view->text = $_POST['text'];
-        }
+        }        
+    }
+
+    protected function actionThirdTask()
+    {
         
     }
 

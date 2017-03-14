@@ -163,3 +163,4 @@
 2017-03-14 11:03:51 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionSecondTask в контроллере App\Controllers\Index не найден
 2017-03-14 13:03:17 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionSecondTask в контроллере App\Controllers\Index не найден
 2017-03-14 13:03:24 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 34 | Метод actionThirdTask в контроллере App\Controllers\Index не найден
+2017-03-14 16:03:48 | Уровень info | Код ошибки 0 | /home/danis/web-программирование/kredit/App/Controller.php | Строка 32 | Метод actionThirdTask в контроллере App\Controllers\Index не найден
