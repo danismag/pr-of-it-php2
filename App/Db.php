@@ -110,9 +110,9 @@ class Db
 
             $sth = $this->dbh->prepare($sql);
 
-            while ('stop' !== yield) {
+            while ('stop' !== $params = yield) {
 
-                yield $sth->execute(yield);
+                $sth->execute($params);
             }
 
         } catch (\PDOException $e) {

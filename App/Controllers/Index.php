@@ -37,8 +37,7 @@ class Index extends Controller
 
     protected function actionThirdTask()
     {
-        var_dump(new MysqlTree());
-
+        new MysqlTree;
     }
 
     protected function action404($message = 'Страница не найдена')

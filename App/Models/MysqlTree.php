@@ -34,5 +34,22 @@ class MysqlTree extends Model
                 ENGINE MyISAM;'
         );
 
+        if (0 == self::countAll()) {
+
+            $sql = 'INSERT INTO ' . self::$table .
+                '(name, parent) VALUES (:name, :parent)';
+            $gen = $db->prepareExecute($sql);
+            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            for ($i = 1; $i <= self::RECORD_NUMBER; $i++) {
+
+                $params['name'] =
+                    substr($chars, rand(0, 24), 1) .
+                    substr($chars, rand(0, 24), 1);
+                $params['parent'] = rand(0, $db->lastId() ?? 0);
+                $gen->send($params);
+            }
+            $gen->send('stop');
+        }
     }
 }
