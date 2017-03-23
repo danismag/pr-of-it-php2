@@ -7,21 +7,26 @@ namespace App\Models;
 use App\Db;
 use App\Model;
 
+/**
+ * Class MysqlTree
+ * @package App\Models
+ */
 class MysqlTree extends Model
 {
     const RECORD_NUMBER = 100;
 
     public static $table = 'tree5';
+    protected static $db;
 
     public function __construct()
     {
+        self::$db = Db::instance();
         $this->createTable();
     }
 
     protected function createTable()
     {
-        $db = Db::instance();
-        $db->execute(
+        self::$db->execute(
             'CREATE TABLE IF NOT EXISTS ' .
             self::$table .
             ' (
@@ -33,23 +38,29 @@ class MysqlTree extends Model
                 CHARACTER SET UTF8,
                 ENGINE MyISAM;'
         );
+    }
 
-        if (0 == self::countAll()) {
+    protected function fillTable()
+    {
+        // Clear table
+        self::$db->execute('TRUNCATE TABLE ' . self::$table);
 
-            $sql = 'INSERT INTO ' . self::$table .
-                '(name, parent) VALUES (:name, :parent)';
-            $gen = $db->prepareExecute($sql);
-            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $sql = 'INSERT INTO ' . self::$table .
+            '(name, parent) VALUES (:name, :parent)';
 
-            for ($i = 1; $i <= self::RECORD_NUMBER; $i++) {
+        /** @var \Generator $gen */
+        $gen = self::$db->prepareExecute($sql);
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-                $params['name'] =
-                    substr($chars, rand(0, 24), 1) .
-                    substr($chars, rand(0, 24), 1);
-                $params['parent'] = rand(0, $db->lastId() ?? 0);
-                $gen->send($params);
-            }
-            $gen->send('stop');
+        for ($i = 1; $i <= self::RECORD_NUMBER; $i++) {
+
+            $params['name'] =
+                substr($chars, rand(0, 24), 1) .
+                substr($chars, rand(0, 24), 1);
+            $params['parent'] = rand(0, self::$db->lastId() ?? 0);
+            $gen->send($params);
         }
+        $gen->send('stop');
+
     }
 }

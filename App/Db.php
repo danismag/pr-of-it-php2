@@ -120,6 +120,11 @@ class Db
         }
     }
 
+    public function countAll():int
+    {
+
+    }
+
     public function lastId(): int
     {
         try {
