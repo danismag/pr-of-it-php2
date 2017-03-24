@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\Controller;
 use App\Db;
-use App\Models\MysqlTree;
+use App\Models\MysqlTreeLeaf;
 use App\Models\TagsExtractor;
 
 class Index extends Controller
@@ -37,7 +37,7 @@ class Index extends Controller
 
     protected function actionThirdTask()
     {
-        new MysqlTree;
+        var_dump(MysqlTreeLeaf::countAll());
     }
 
     protected function action404($message = 'Страница не найдена')

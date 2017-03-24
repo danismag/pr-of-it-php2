@@ -19,7 +19,7 @@ abstract class Model
     {
         $db = Db::instance();
         $sql = 'SELECT COUNT(*) AS num FROM ' . static::$table;
-        return $db->query($sql, [], static::class);
+        return $db->query($sql, [])[0]['num'];
     }
 
     /**

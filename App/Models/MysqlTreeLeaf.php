@@ -11,7 +11,7 @@ use App\Model;
  * Class MysqlTree
  * @package App\Models
  */
-class MysqlTree extends Model
+class MysqlTreeLeaf extends Model
 {
     const RECORD_NUMBER = 100;
 
@@ -22,6 +22,28 @@ class MysqlTree extends Model
     {
         self::$db = Db::instance();
         $this->createTable();
+    }
+
+    public function __get($key)
+    {
+        $method = 'get' . ucfirst($key);
+        if (method_exists(self::class, $method)) {
+
+            return $this->$method;
+        }
+    }
+
+    public function __isset($key)
+    {
+        return method_exists(self::class, 'get' . ucfirst($key));
+    }
+
+    public function getTree()
+    {
+        return self::$db->query(
+            'SELECT id AS root, (SELECT id FROM '.self::$table.' WHERE parent = root LIMIT 1) AS child FROM ' . self::$table . ' WHERE parent = 0'
+        );
+
     }
 
     protected function createTable()
@@ -43,7 +65,7 @@ class MysqlTree extends Model
     protected function fillTable()
     {
         // Clear table
-        self::$db->execute('TRUNCATE TABLE ' . self::$table);
+        self::$db->execute('TRUNCATE ' . self::$table);
 
         $sql = 'INSERT INTO ' . self::$table .
             '(name, parent) VALUES (:name, :parent)';
