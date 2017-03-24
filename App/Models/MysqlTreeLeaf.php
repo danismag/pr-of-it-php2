@@ -10,6 +10,8 @@ use App\Model;
 /**
  * Class MysqlTree
  * @package App\Models
+ * @property array $children
+ * @property \App\Models\MysqlTreeLeaf $father
  */
 class MysqlTreeLeaf extends Model
 {
@@ -17,6 +19,14 @@ class MysqlTreeLeaf extends Model
 
     public static $table = 'tree5';
     protected static $db;
+
+    public $name;
+    public $parent;
+
+    public static function findRootAll()
+    {
+        
+    }
 
     public function __construct()
     {
@@ -29,7 +39,7 @@ class MysqlTreeLeaf extends Model
         $method = 'get' . ucfirst($key);
         if (method_exists(self::class, $method)) {
 
-            return $this->$method;
+            return $this->$method();
         }
     }
 
@@ -38,12 +48,20 @@ class MysqlTreeLeaf extends Model
         return method_exists(self::class, 'get' . ucfirst($key));
     }
 
-    public function getTree()
+    public function getChildren()
     {
         return self::$db->query(
-            'SELECT id AS root, (SELECT id FROM '.self::$table.' WHERE parent = root LIMIT 1) AS child FROM ' . self::$table . ' WHERE parent = 0'
-        );
+            'SELECT * FROM ' . self::$table . ' WHERE parent = :parent',
+        [':parent' => $this->id],
+        self::class);
+    }
 
+    public function getFather()
+    {
+        return self::$db->query(
+            'SELECT * FROM ' . self::$table . ' WHERE id = :id',
+            [':id' => $this->parent],
+            self::class)[0];
     }
 
     protected function createTable()

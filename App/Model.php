@@ -15,6 +15,12 @@ abstract class Model
         return $db->query($sql, [], static::class);
     }
 
+    public static function findAllByQuery($sql, $params = [])
+    {
+        $db = Db::instance();
+        return $db->query($sql, $params, static::class);
+    }
+
     public static function countAll()
     {
         $db = Db::instance();
