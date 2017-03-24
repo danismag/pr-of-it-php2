@@ -37,10 +37,8 @@ class Index extends Controller
 
     protected function actionThirdTask()
     {
-        $tree = MysqlTreeLeaf::findById(3);
+        $tree = MysqlTreeLeaf::findRootAll();
         var_dump($tree);
-        var_dump($tree->children);
-        var_dump($tree->father);
     }
 
     protected function action404($message = 'Страница не найдена')

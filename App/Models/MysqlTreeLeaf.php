@@ -25,7 +25,8 @@ class MysqlTreeLeaf extends Model
 
     public static function findRootAll()
     {
-        
+        $sql = 'SELECT * FROM ' . self::$table . ' WHERE parent = 0';
+        return self::findAllByQuery($sql);
     }
 
     public function __construct()
