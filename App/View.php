@@ -14,6 +14,8 @@ use App\Traits\TMagicProperties;
  * @property array arrayValues
  * @property array arrayTags
  * @property array keyValues
+ * @property array leaves
+ * @property array treeTable
  * @property string text
  */
 class View
